@@ -1,0 +1,2430 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Create and assess an extreme precipitation event index using NCAR’s CONUS 404 Convective Permitting (CP) Global Circulation Model (GCM) grids with 4-km horizontal resolution compared to the PRISM monthly climatology precipitation dataset, and rain gauge data &#8212; Analysis Project Template</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">Analysis Project Template</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Introduction
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Notebook_Template.html">
+   Sample Notebook
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/1_create_extreme_precip_indicator.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/1_create_extreme_precip_indicator.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#created-september-2022-by-serke-d-for-the-ncar-gis-group">
+   - Created September 2022 by Serke, D. for the NCAR GIS Group
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#purpose">
+   Purpose
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#in-this-notebook-we-will-explore-how-to-create-a-single-sample-index-that-are-derived-from-more-complex-model-fields">
+     In this notebook, we will explore how to create a single sample index that are derived from more complex model fields.
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#for-this-workflow-we-have-chosen-to-demonstrate-a-precipitation-extreme-index-using-monthly-temporal-resolution">
+     For this workflow, we have chosen to demonstrate a ‘precipitation extreme’ index, using monthly temporal resolution.
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-index-values-will-then-be-compared-to-truth-data-in-the-form-of-rain-gauge-time-series-values-and-long-term-climate-normal-values-from-prism">
+     The index values will then be compared to ‘truth’ data in the form of rain gauge time series values and long term climate normal values from PRISM.
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a-user-may-choose-to-implement-any-manner-of-index-or-indicator-following-the-template-in-this-workflow">
+     A user may choose to implement any manner of index or indicator, following the template in this workflow
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a-list-of-other-potential-indices-indicators-appears-in-these-links-wmo-climpact-indices-idmp-drought-indices">
+     A list of other potential indices/indicators appears in these links: WMO Climpact indices, IDMP drought indices
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#another-purpose-is-to-gain-a-better-understanding-of-the-background-output-fields-precision-and-utility-of-ncar-s-conus404-model-as-it-is-described-in-this-paper">
+     Another purpose is to gain a better understanding of the background, output fields, precision, and utility of NCAR’s CONUS404 model as it is described in this paper
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#background">
+   Background
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a-review-of-convective-permitting-climate-modelling-was-the-topic-of-this-prein-et-al-2015-paper">
+     A review of Convective-permitting climate modelling was the topic of this Prein et al. 2015 paper
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#previous-research-by-prein-et-al-2022-and-prein-et-al-2020-has-demonstrated-that-with-high-resolution-convection-permitting-gcms-it-is-possible-to-identify-longer-duration-precipitation-events-eg-monsoon-mcss-via-the-frequency-of-days-with-synoptic-scale-moisture-advection-into-the-region-using-this-field-greatly-improves-predictability-over-directly-utilizing-modeled-precipitation-we-will-explore-that-possibility-here">
+     Previous research by
+     <span class="xref myst">
+      Prein et al. 2022
+     </span>
+     and Prein et al. 2020 has demonstrated that with high resolution, convection-permitting GCMs it is possible to identify longer duration precipitation events (eg monsoon, MCSs) via the frequency of days with synoptic-scale moisture advection into the region.  Using this field greatly improves predictability over directly utilizing modeled precipitation. We will explore that possibility here.
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#characteristics-of-ncar-s-conus404-model-as-discussed-in-liu-et-al-2017-include">
+     Characteristics of NCAR’s CONUS404 model, as discussed in Liu et al. 2017 include:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#runs-on-high-performance-computing-system-sponsored-by-the-usgs">
+     - runs on high performance computing system sponsored by the USGS
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#uses-weather-research-and-forecasting-wrf-model-version-3-9-1-with-4-x-4-km-horizontal-resolution-over-continental-us-conus-portion-of-canada">
+     - uses Weather Research and Forecasting (WRF) model Version 3.9.1 with 4 x 4 km horizontal resolution over CONtinental US (CONUS) + portion of Canada
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hourly-temporal-output-frequency">
+     - hourly temporal output frequency
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#resolves-orography">
+     - resolves orography
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#year-retrospective-simulation-oct-of-1979-2021">
+     - 40-year retrospective simulation (Oct of 1979-2021)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#permits-convection">
+     - permits convection
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#initial-boundary-conditions-from-era5-1-hr-reanalysis-data">
+     - initial boundary conditions from ERA5 1-hr reanalysis data
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#stretched-vertical-levels-with-50-mb-as-top-level">
+     - 51 stretched vertical levels, with 50 mb as top level
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#uses-thompson-and-eidhammer-2014-aerosol-aware-microphysics-package">
+     - uses Thompson and Eidhammer (2014) aerosol-aware microphysics package
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#uses-rapid-radiative-transfer-model">
+     - uses Rapid Radiative Transfer Model
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#uses-yonsei-university-planetary-boundary-layer">
+     - uses Yonsei University planetary boundary layer
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#uses-the-noah-mp-land-surface-model-with-several-key-custom-modifications">
+     - uses the Noah-MP land-surface model, with several key custom modifications
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#uses-the-miguel-macho-fan-mff-groundwater-scheme">
+     - uses the Miguel Macho Fan (MFF) groundwater scheme
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#spectral-nudging-is-applied-to-remove-warm-season-bias">
+     - spectral nudging is applied (to remove warm season bias)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#an-upgraded-lake-water-temperature-treatment-is-implemented">
+     - an upgraded lake water temperature treatment is implemented
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id1">
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#potential-advantages-of-high-resolution-cp-models-run-multiple-decades-include">
+     Potential advantages of high resolution CP models run multiple decades include:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#resolving-high-intensity-precipitation-events-which-are-not-possible-in-convection-parameterizing-models">
+     - resolving high intensity precipitation events, which are not possible in convection-parameterizing models
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#better-resolve-evapotranspiration-et-the-most-uncertain-water-cycle-term">
+     - better resolve evapotranspiration (ET), the most uncertain water cycle term
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-sum-of-these-two-is-better-resolved-runoff">
+     - the sum of these two is better resolved runoff
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#extremes-are-typically-associated-with-mesoscale-processes-such-as-mesoscale-terrain-forcing-gust-fronts-dry-lines-and-mcss-which-are-typically-not-properly-depicted-in-gcms">
+     - extremes are typically associated with mesoscale processes, such as mesoscale terrain forcing, gust fronts, dry lines, and MCSs, which are typically not properly depicted in GCMs
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id2">
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#findings-from-the-conus404-compared-to-truth">
+     Findings from the CONUS404 compared to ‘truth’:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#quite-consistent-year-to-year-having-no-visible-deterioration-and-drifting-with-integration-time">
+     - Quite consistent year to year, having no visible deterioration and drifting with integration time
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-model-absolute-error-is-well-within-the-observational-uncertainty">
+     - the model absolute error is well within the observational uncertainty
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#apparent-deficiency-is-the-mid-summer-rainfall-low-bias-over-the-central-u-s-possibly-indicative-of-too-weak-or-too-infrequent-propagating-convection-which-originates-from-the-rockies">
+     - apparent deficiency is the mid-summer rainfall low bias over the central U.S., possibly indicative of too-weak (or too infrequent) propagating convection which originates from the Rockies
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-pattern-correlation-coeffcient-is-higher-than-0-96-for-all-seasons">
+     - The pattern correlation coeffcient is higher than 0.96 for all seasons.
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#wrf-does-particularly-well-in-simulating-the-coastal-and-topographic-modifcations-over-the-western-conus-in-all-seasons">
+     - WRF does particularly well in simulating the coastal and topographic modifcations over the western CONUS in all seasons
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#confrms-the-models-capability-in-reproducing-orographic-precipitation">
+     - confrms the model’s capability in reproducing orographic precipitation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-average-precipitation-at-all-sites-has-a-small-negative-bias-of-just-2">
+     - The average precipitation at all sites has a small negative bias of just −2 %
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#able-to-replicate-the-observed-annual-cycle-accurately-timing-the-maximum-minimum-monthly-precipitation-and-the-departure-is-typically-a-few-percent-of-the-observations">
+     - Able to replicate the observed annual cycle, accurately timing the maximum/minimum monthly precipitation, and the departure is typically a few percent of the observations
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id3">
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#for-this-exploratory-workflow-we-chose-to-demonstrate-the-standardized-precipitation-index-spi-developed-by-mckee-et-al-1993">
+     For this exploratory workflow, we chose to demonstrate the Standardized Precipitation Index (SPI), developed by McKee et al. (1993)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#workflow-outline">
+   Workflow outline
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#first-we-will-divide-this-complicated-sounding-process-down-into-prioritized-manageable-steps-in-this-workflow-outline">
+     First, we will divide this complicated sounding process down into prioritized, manageable steps in this workflow outline…
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#define-a-study-period">
+     1. Define a study period
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#collect-input-data">
+     2. Collect input data
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#set-up-user-s-python-environment">
+     3. Set up user’s python environment
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ingest-input-data">
+     4. Ingest input data
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#implement-an-extreme-precipitation-index">
+     5. Implement an extreme precipitation index
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#visualize-data">
+     6. Visualize data
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#step-1-define-a-study-period">
+   Step 1. Define a study period
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#first-we-need-to-identify-a-time-period-where-all-of-our-input-datasets-will-be-known-to-be-available-and-an-extreme-precipitation-event-is-known-to-have-occurred">
+     First, we need to identify a time period where all of our input datasets will be known to be available and an extreme precipitation event is known to have occurred
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-climatology-data-covers-at-least-the-last-30-years-with-monthly-4km-x-4km-solution-similar-to-the-conus404-model-grid">
+     The climatology data covers at least the last 30 years, with monthly 4km x 4km solution (similar to the CONUS404 model grid)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#let-s-examine-the-colorado-front-range-flooding-from-2013-to-demonstrate-the-workflow">
+     Let’s examine the Colorado Front Range flooding from 2013 to demonstrate the workflow
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a-more-detailed-meteorological-analysis-of-the-event-was-presented-by-the-national-weather-service-nws-at-this-link">
+     A more detailed meteorological analysis of the event was presented by the National Weather Service (NWS) at this link
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#next-we-ll-collect-some-data">
+   Next, we’ll collect some data …
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#step-2-collect-input-datasets">
+   Step 2. Collect input datasets
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#next-we-will-collect-the-input-datasets-for-the-climatology-gauge-dataset-2a-prism-and-the-gcm-gridded-dataset-2b-conus-404">
+     Next, we will collect the input datasets for the climatology/gauge dataset (2a, PRISM), and the GCM gridded dataset (2b, CONUS 404):
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id4">
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a-climatology-dataset">
+     2a climatology dataset -
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-prism-30-year-precipitation-ppt-normals-dataset-can-be-downloaded-from-this-link">
+     - The PRISM 30-year precipitation (ppt) normals dataset can be downloaded from this link
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#and-the-prism-30-year-ppt-time-series-dataset-can-be-downloaded-from-this-link">
+     - and the PRISM 30-year ppt time-series dataset can be downloaded from this link
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#for-this-workflow-the-extracted-contents-of-the-zip-file-were-pointed-to-a-subdirectory-created-under-this-path-d1-serke-projects-climate-gis-data">
+     - For this workflow, the extracted contents of the .zip file were pointed to a subdirectory created under this path: /d1/serke/projects/CLIMATE_GIS/data/
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id5">
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#the-ncar-440-model-sample-file-can-be-accessed-here">
+       - The NCAR 440 model sample file can be accessed here:
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#files-will-be-publicly-available-within-a-few-months-via-ncar-s-rda">
+       - Files will be publicly available within a few months via NCAR’s RDA
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id6">
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#step-3-set-up-user-s-python-environment-for-a-linux-machine">
+   Step 3. Set up user’s python environment (for a linux machine)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#install-conda-or-miniconda-on-your-machine-at-least-v3-x">
+     Install conda or miniconda on your machine, at least v3.x
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#direct-your-browser-to-ncar-s-jupyterhub">
+     Direct your browser to NCAR’s Jupyterhub
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#change-directory-cd-into-your-python-working-directory">
+     Change directory (cd) into your python working directory:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#activate-your-preferred-python-environment-example-below">
+     Activate your preferred python environment (example below):
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#install-the-following-python-packages-using-the-example-command-line-below">
+     Install the following python packages, using the example command line below:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#import-installed-packages-into-python-environment">
+     Import installed packages into python environment
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#step-4-ingest-input-datasets">
+   Step 4. Ingest input datasets
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a-prism-monthly-precipitation-climatology-gridded-dataset">
+     4a. PRISM Monthly Precipitation Climatology gridded dataset:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#define-the-directory-path-that-the-ppt-normals-bil-format-subdirectories-and-ppt-point-time-series-files-csv-format-were-stored-in-by-the-user-in-step-2a">
+     Define the directory path that the ppt normals (.bil format) subdirectories and ppt point time-series files (.csv format) were stored in by the user in Step 2a:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#load-the-30-year-ppt-time-series-from-near-boulder-co-from-the-csv-file-skipping-the-header-lines-into-a-pandas-dataframe">
+     Load the 30-year ppt time-series from near Boulder, CO from the .csv file (skipping the header lines) into a pandas dataframe:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#now-subset-the-dataframe-to-include-only-ppt-values-from-all-30-septembers">
+     Now subset the dataframe to include only ppt values from all 30 septembers
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#now-lets-work-with-the-bil-ppt-normals-dataset-execute-the-prism-iterator-function-that-outputs-information-on-the-available-bil-files-in-that-path">
+     Now, lets work with the .bil ppt normals dataset.  Execute the ‘prism_iterator’ function that outputs information on the available .bil files in that path
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#note-the-only-variable-is-ppt-or-daily-precipitation-amount-in-mm-since-that-was-the-only-field-requested-from-the-prism-data-download-interface">
+     NOTE: The only variable is ‘ppt’, or daily precipitation amount in mm, since that was the only field requested from the PRISM data download interface
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#lets-now-load-the-30-year-normals-file-for-september-month-09-in-the-bil-filename-using-the-full-path-field-above">
+     Lets now load the 30-year normals file for September (month ‘09’ in the .bil filename) using the ‘full_path’ field above:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#display-some-raster-properties-metadata-type-crs-shape-and-layer-count">
+     Display some raster properties (metadata, type, crs, shape, and layer count):
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#b-ncar-conus440-gridded-dataset-borrowed-from-https-wrf-python-readthedocs-io-en-latest-basic-usage-html">
+     4b. NCAR CONUS440 gridded dataset (borrowed from https://wrf-python.readthedocs.io/en/latest/basic_usage.html):
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#access-the-conus404-data-files-in-two-possible-ways">
+       Access the CONUS404 data files in two possible ways:
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#via-ncar-s-casper-supercomputer-on-glade-or">
+       1. via NCAR’s casper supercomputer on glade, or
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#via-manual-access-files-on-local-storage">
+       2. via manual access files on local storage
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#both-are-demonstrated-below">
+       Both are demonstrated below …
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#step-5-implement-an-extreme-precipitation-index">
+   Step 5. Implement an extreme precipitation index
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id7">
+     For this exploratory workflow, we chose to demonstrate the Standardized Precipitation Index (SPI), developed by McKee et al. (1993)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#spi-is-simply-the-difference-of-precipitation-from-the-mean-for-a-specified-time-period-divided-by-the-standard-deviation-where-the-mean-and-standard-deviation-are-determined-from-past-records">
+     SPI is simply the difference of precipitation from the mean for a specified time period divided by the standard deviation where the mean and standard deviation are determined from past records.
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#this-link-provides-a-more-detailed-description-strengths-and-weaknesses-of-the-spi-index">
+     This link provides a more detailed description, strengths, and weaknesses of the SPI index
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#for-this-example-we-are-using-monthly-resolution-data-over-a-30-year-period">
+     ….. For this example, we are using monthly resolution data over a 30 year period
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#let-s-calculate-these-statistical-measures-for-use-in-the-spi">
+     Let’s calculate these statistical measures for use in the SPI:
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#step-6-visualize-data">
+   Step 6. Visualize data
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#display-mapview-of-ppt-normal-values-across-conus-representing-the-last-30-years-from-the-gridded-prism-climatology">
+     Display mapview of ppt normal values across CONUS representing the last 30 years from the gridded PRISM climatology:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#display-histogram-of-ppt-normal-values-across-conus-representing-the-last-30-years-from-the-gridded-prism-climatology">
+     Display histogram of ppt normal values across CONUS representing the last 30 years from the gridded PRISM climatology:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#display-time-series-of-september-monthly-ppt-field-values-from-1991-2020-from-point-data-representing-boulder-co">
+     Display time-series of september monthly ppt field values from 1991-2020 from point data representing Boulder, CO:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#plot-density-normalized-histogram-of-september-ppt-values-and-fit-to-a-gamma-distribution">
+     Plot density normalized histogram of september ppt values and fit to a Gamma Distribution:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#plot-a-timeline-of-spi-values-september-1991-through-september-2020">
+     Plot a timeline of SPI values September 1991 through September 2020:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#plot-conus404-hourly-accumulated-precipitation">
+     Plot CONUS404 hourly accumulated precipitation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#note-it-appears-that-the-conus404-does-a-very-reasonable-job-at-producing-very-significant-precipitation-amounts-similar-to-what-was-observed-during-the-flooding-period">
+     NOTE: It appears that the CONUS404 does a very reasonable job at producing very significant precipitation amounts similar to what was observed during the flooding period.
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#references">
+   References
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Create and assess an extreme precipitation event index using NCAR’s CONUS 404 Convective Permitting (CP) Global Circulation Model (GCM) grids with 4-km horizontal resolution compared to the PRISM monthly climatology precipitation dataset, and rain gauge data</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#created-september-2022-by-serke-d-for-the-ncar-gis-group">
+   - Created September 2022 by Serke, D. for the NCAR GIS Group
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#purpose">
+   Purpose
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#in-this-notebook-we-will-explore-how-to-create-a-single-sample-index-that-are-derived-from-more-complex-model-fields">
+     In this notebook, we will explore how to create a single sample index that are derived from more complex model fields.
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#for-this-workflow-we-have-chosen-to-demonstrate-a-precipitation-extreme-index-using-monthly-temporal-resolution">
+     For this workflow, we have chosen to demonstrate a ‘precipitation extreme’ index, using monthly temporal resolution.
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-index-values-will-then-be-compared-to-truth-data-in-the-form-of-rain-gauge-time-series-values-and-long-term-climate-normal-values-from-prism">
+     The index values will then be compared to ‘truth’ data in the form of rain gauge time series values and long term climate normal values from PRISM.
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a-user-may-choose-to-implement-any-manner-of-index-or-indicator-following-the-template-in-this-workflow">
+     A user may choose to implement any manner of index or indicator, following the template in this workflow
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a-list-of-other-potential-indices-indicators-appears-in-these-links-wmo-climpact-indices-idmp-drought-indices">
+     A list of other potential indices/indicators appears in these links: WMO Climpact indices, IDMP drought indices
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#another-purpose-is-to-gain-a-better-understanding-of-the-background-output-fields-precision-and-utility-of-ncar-s-conus404-model-as-it-is-described-in-this-paper">
+     Another purpose is to gain a better understanding of the background, output fields, precision, and utility of NCAR’s CONUS404 model as it is described in this paper
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#background">
+   Background
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a-review-of-convective-permitting-climate-modelling-was-the-topic-of-this-prein-et-al-2015-paper">
+     A review of Convective-permitting climate modelling was the topic of this Prein et al. 2015 paper
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#previous-research-by-prein-et-al-2022-and-prein-et-al-2020-has-demonstrated-that-with-high-resolution-convection-permitting-gcms-it-is-possible-to-identify-longer-duration-precipitation-events-eg-monsoon-mcss-via-the-frequency-of-days-with-synoptic-scale-moisture-advection-into-the-region-using-this-field-greatly-improves-predictability-over-directly-utilizing-modeled-precipitation-we-will-explore-that-possibility-here">
+     Previous research by
+     <span class="xref myst">
+      Prein et al. 2022
+     </span>
+     and Prein et al. 2020 has demonstrated that with high resolution, convection-permitting GCMs it is possible to identify longer duration precipitation events (eg monsoon, MCSs) via the frequency of days with synoptic-scale moisture advection into the region.  Using this field greatly improves predictability over directly utilizing modeled precipitation. We will explore that possibility here.
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#characteristics-of-ncar-s-conus404-model-as-discussed-in-liu-et-al-2017-include">
+     Characteristics of NCAR’s CONUS404 model, as discussed in Liu et al. 2017 include:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#runs-on-high-performance-computing-system-sponsored-by-the-usgs">
+     - runs on high performance computing system sponsored by the USGS
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#uses-weather-research-and-forecasting-wrf-model-version-3-9-1-with-4-x-4-km-horizontal-resolution-over-continental-us-conus-portion-of-canada">
+     - uses Weather Research and Forecasting (WRF) model Version 3.9.1 with 4 x 4 km horizontal resolution over CONtinental US (CONUS) + portion of Canada
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hourly-temporal-output-frequency">
+     - hourly temporal output frequency
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#resolves-orography">
+     - resolves orography
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#year-retrospective-simulation-oct-of-1979-2021">
+     - 40-year retrospective simulation (Oct of 1979-2021)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#permits-convection">
+     - permits convection
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#initial-boundary-conditions-from-era5-1-hr-reanalysis-data">
+     - initial boundary conditions from ERA5 1-hr reanalysis data
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#stretched-vertical-levels-with-50-mb-as-top-level">
+     - 51 stretched vertical levels, with 50 mb as top level
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#uses-thompson-and-eidhammer-2014-aerosol-aware-microphysics-package">
+     - uses Thompson and Eidhammer (2014) aerosol-aware microphysics package
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#uses-rapid-radiative-transfer-model">
+     - uses Rapid Radiative Transfer Model
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#uses-yonsei-university-planetary-boundary-layer">
+     - uses Yonsei University planetary boundary layer
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#uses-the-noah-mp-land-surface-model-with-several-key-custom-modifications">
+     - uses the Noah-MP land-surface model, with several key custom modifications
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#uses-the-miguel-macho-fan-mff-groundwater-scheme">
+     - uses the Miguel Macho Fan (MFF) groundwater scheme
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#spectral-nudging-is-applied-to-remove-warm-season-bias">
+     - spectral nudging is applied (to remove warm season bias)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#an-upgraded-lake-water-temperature-treatment-is-implemented">
+     - an upgraded lake water temperature treatment is implemented
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id1">
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#potential-advantages-of-high-resolution-cp-models-run-multiple-decades-include">
+     Potential advantages of high resolution CP models run multiple decades include:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#resolving-high-intensity-precipitation-events-which-are-not-possible-in-convection-parameterizing-models">
+     - resolving high intensity precipitation events, which are not possible in convection-parameterizing models
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#better-resolve-evapotranspiration-et-the-most-uncertain-water-cycle-term">
+     - better resolve evapotranspiration (ET), the most uncertain water cycle term
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-sum-of-these-two-is-better-resolved-runoff">
+     - the sum of these two is better resolved runoff
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#extremes-are-typically-associated-with-mesoscale-processes-such-as-mesoscale-terrain-forcing-gust-fronts-dry-lines-and-mcss-which-are-typically-not-properly-depicted-in-gcms">
+     - extremes are typically associated with mesoscale processes, such as mesoscale terrain forcing, gust fronts, dry lines, and MCSs, which are typically not properly depicted in GCMs
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id2">
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#findings-from-the-conus404-compared-to-truth">
+     Findings from the CONUS404 compared to ‘truth’:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#quite-consistent-year-to-year-having-no-visible-deterioration-and-drifting-with-integration-time">
+     - Quite consistent year to year, having no visible deterioration and drifting with integration time
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-model-absolute-error-is-well-within-the-observational-uncertainty">
+     - the model absolute error is well within the observational uncertainty
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#apparent-deficiency-is-the-mid-summer-rainfall-low-bias-over-the-central-u-s-possibly-indicative-of-too-weak-or-too-infrequent-propagating-convection-which-originates-from-the-rockies">
+     - apparent deficiency is the mid-summer rainfall low bias over the central U.S., possibly indicative of too-weak (or too infrequent) propagating convection which originates from the Rockies
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-pattern-correlation-coeffcient-is-higher-than-0-96-for-all-seasons">
+     - The pattern correlation coeffcient is higher than 0.96 for all seasons.
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#wrf-does-particularly-well-in-simulating-the-coastal-and-topographic-modifcations-over-the-western-conus-in-all-seasons">
+     - WRF does particularly well in simulating the coastal and topographic modifcations over the western CONUS in all seasons
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#confrms-the-models-capability-in-reproducing-orographic-precipitation">
+     - confrms the model’s capability in reproducing orographic precipitation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-average-precipitation-at-all-sites-has-a-small-negative-bias-of-just-2">
+     - The average precipitation at all sites has a small negative bias of just −2 %
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#able-to-replicate-the-observed-annual-cycle-accurately-timing-the-maximum-minimum-monthly-precipitation-and-the-departure-is-typically-a-few-percent-of-the-observations">
+     - Able to replicate the observed annual cycle, accurately timing the maximum/minimum monthly precipitation, and the departure is typically a few percent of the observations
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id3">
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#for-this-exploratory-workflow-we-chose-to-demonstrate-the-standardized-precipitation-index-spi-developed-by-mckee-et-al-1993">
+     For this exploratory workflow, we chose to demonstrate the Standardized Precipitation Index (SPI), developed by McKee et al. (1993)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#workflow-outline">
+   Workflow outline
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#first-we-will-divide-this-complicated-sounding-process-down-into-prioritized-manageable-steps-in-this-workflow-outline">
+     First, we will divide this complicated sounding process down into prioritized, manageable steps in this workflow outline…
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#define-a-study-period">
+     1. Define a study period
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#collect-input-data">
+     2. Collect input data
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#set-up-user-s-python-environment">
+     3. Set up user’s python environment
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ingest-input-data">
+     4. Ingest input data
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#implement-an-extreme-precipitation-index">
+     5. Implement an extreme precipitation index
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#visualize-data">
+     6. Visualize data
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#step-1-define-a-study-period">
+   Step 1. Define a study period
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#first-we-need-to-identify-a-time-period-where-all-of-our-input-datasets-will-be-known-to-be-available-and-an-extreme-precipitation-event-is-known-to-have-occurred">
+     First, we need to identify a time period where all of our input datasets will be known to be available and an extreme precipitation event is known to have occurred
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-climatology-data-covers-at-least-the-last-30-years-with-monthly-4km-x-4km-solution-similar-to-the-conus404-model-grid">
+     The climatology data covers at least the last 30 years, with monthly 4km x 4km solution (similar to the CONUS404 model grid)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#let-s-examine-the-colorado-front-range-flooding-from-2013-to-demonstrate-the-workflow">
+     Let’s examine the Colorado Front Range flooding from 2013 to demonstrate the workflow
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a-more-detailed-meteorological-analysis-of-the-event-was-presented-by-the-national-weather-service-nws-at-this-link">
+     A more detailed meteorological analysis of the event was presented by the National Weather Service (NWS) at this link
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#next-we-ll-collect-some-data">
+   Next, we’ll collect some data …
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#step-2-collect-input-datasets">
+   Step 2. Collect input datasets
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#next-we-will-collect-the-input-datasets-for-the-climatology-gauge-dataset-2a-prism-and-the-gcm-gridded-dataset-2b-conus-404">
+     Next, we will collect the input datasets for the climatology/gauge dataset (2a, PRISM), and the GCM gridded dataset (2b, CONUS 404):
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id4">
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a-climatology-dataset">
+     2a climatology dataset -
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-prism-30-year-precipitation-ppt-normals-dataset-can-be-downloaded-from-this-link">
+     - The PRISM 30-year precipitation (ppt) normals dataset can be downloaded from this link
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#and-the-prism-30-year-ppt-time-series-dataset-can-be-downloaded-from-this-link">
+     - and the PRISM 30-year ppt time-series dataset can be downloaded from this link
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#for-this-workflow-the-extracted-contents-of-the-zip-file-were-pointed-to-a-subdirectory-created-under-this-path-d1-serke-projects-climate-gis-data">
+     - For this workflow, the extracted contents of the .zip file were pointed to a subdirectory created under this path: /d1/serke/projects/CLIMATE_GIS/data/
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id5">
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#the-ncar-440-model-sample-file-can-be-accessed-here">
+       - The NCAR 440 model sample file can be accessed here:
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#files-will-be-publicly-available-within-a-few-months-via-ncar-s-rda">
+       - Files will be publicly available within a few months via NCAR’s RDA
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id6">
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#step-3-set-up-user-s-python-environment-for-a-linux-machine">
+   Step 3. Set up user’s python environment (for a linux machine)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#install-conda-or-miniconda-on-your-machine-at-least-v3-x">
+     Install conda or miniconda on your machine, at least v3.x
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#direct-your-browser-to-ncar-s-jupyterhub">
+     Direct your browser to NCAR’s Jupyterhub
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#change-directory-cd-into-your-python-working-directory">
+     Change directory (cd) into your python working directory:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#activate-your-preferred-python-environment-example-below">
+     Activate your preferred python environment (example below):
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#install-the-following-python-packages-using-the-example-command-line-below">
+     Install the following python packages, using the example command line below:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#import-installed-packages-into-python-environment">
+     Import installed packages into python environment
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#step-4-ingest-input-datasets">
+   Step 4. Ingest input datasets
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a-prism-monthly-precipitation-climatology-gridded-dataset">
+     4a. PRISM Monthly Precipitation Climatology gridded dataset:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#define-the-directory-path-that-the-ppt-normals-bil-format-subdirectories-and-ppt-point-time-series-files-csv-format-were-stored-in-by-the-user-in-step-2a">
+     Define the directory path that the ppt normals (.bil format) subdirectories and ppt point time-series files (.csv format) were stored in by the user in Step 2a:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#load-the-30-year-ppt-time-series-from-near-boulder-co-from-the-csv-file-skipping-the-header-lines-into-a-pandas-dataframe">
+     Load the 30-year ppt time-series from near Boulder, CO from the .csv file (skipping the header lines) into a pandas dataframe:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#now-subset-the-dataframe-to-include-only-ppt-values-from-all-30-septembers">
+     Now subset the dataframe to include only ppt values from all 30 septembers
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#now-lets-work-with-the-bil-ppt-normals-dataset-execute-the-prism-iterator-function-that-outputs-information-on-the-available-bil-files-in-that-path">
+     Now, lets work with the .bil ppt normals dataset.  Execute the ‘prism_iterator’ function that outputs information on the available .bil files in that path
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#note-the-only-variable-is-ppt-or-daily-precipitation-amount-in-mm-since-that-was-the-only-field-requested-from-the-prism-data-download-interface">
+     NOTE: The only variable is ‘ppt’, or daily precipitation amount in mm, since that was the only field requested from the PRISM data download interface
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#lets-now-load-the-30-year-normals-file-for-september-month-09-in-the-bil-filename-using-the-full-path-field-above">
+     Lets now load the 30-year normals file for September (month ‘09’ in the .bil filename) using the ‘full_path’ field above:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#display-some-raster-properties-metadata-type-crs-shape-and-layer-count">
+     Display some raster properties (metadata, type, crs, shape, and layer count):
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#b-ncar-conus440-gridded-dataset-borrowed-from-https-wrf-python-readthedocs-io-en-latest-basic-usage-html">
+     4b. NCAR CONUS440 gridded dataset (borrowed from https://wrf-python.readthedocs.io/en/latest/basic_usage.html):
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#access-the-conus404-data-files-in-two-possible-ways">
+       Access the CONUS404 data files in two possible ways:
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#via-ncar-s-casper-supercomputer-on-glade-or">
+       1. via NCAR’s casper supercomputer on glade, or
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#via-manual-access-files-on-local-storage">
+       2. via manual access files on local storage
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#both-are-demonstrated-below">
+       Both are demonstrated below …
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#step-5-implement-an-extreme-precipitation-index">
+   Step 5. Implement an extreme precipitation index
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id7">
+     For this exploratory workflow, we chose to demonstrate the Standardized Precipitation Index (SPI), developed by McKee et al. (1993)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#spi-is-simply-the-difference-of-precipitation-from-the-mean-for-a-specified-time-period-divided-by-the-standard-deviation-where-the-mean-and-standard-deviation-are-determined-from-past-records">
+     SPI is simply the difference of precipitation from the mean for a specified time period divided by the standard deviation where the mean and standard deviation are determined from past records.
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#this-link-provides-a-more-detailed-description-strengths-and-weaknesses-of-the-spi-index">
+     This link provides a more detailed description, strengths, and weaknesses of the SPI index
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#for-this-example-we-are-using-monthly-resolution-data-over-a-30-year-period">
+     ….. For this example, we are using monthly resolution data over a 30 year period
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#let-s-calculate-these-statistical-measures-for-use-in-the-spi">
+     Let’s calculate these statistical measures for use in the SPI:
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#step-6-visualize-data">
+   Step 6. Visualize data
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#display-mapview-of-ppt-normal-values-across-conus-representing-the-last-30-years-from-the-gridded-prism-climatology">
+     Display mapview of ppt normal values across CONUS representing the last 30 years from the gridded PRISM climatology:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#display-histogram-of-ppt-normal-values-across-conus-representing-the-last-30-years-from-the-gridded-prism-climatology">
+     Display histogram of ppt normal values across CONUS representing the last 30 years from the gridded PRISM climatology:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#display-time-series-of-september-monthly-ppt-field-values-from-1991-2020-from-point-data-representing-boulder-co">
+     Display time-series of september monthly ppt field values from 1991-2020 from point data representing Boulder, CO:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#plot-density-normalized-histogram-of-september-ppt-values-and-fit-to-a-gamma-distribution">
+     Plot density normalized histogram of september ppt values and fit to a Gamma Distribution:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#plot-a-timeline-of-spi-values-september-1991-through-september-2020">
+     Plot a timeline of SPI values September 1991 through September 2020:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#plot-conus404-hourly-accumulated-precipitation">
+     Plot CONUS404 hourly accumulated precipitation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#note-it-appears-that-the-conus404-does-a-very-reasonable-job-at-producing-very-significant-precipitation-amounts-similar-to-what-was-observed-during-the-flooding-period">
+     NOTE: It appears that the CONUS404 does a very reasonable job at producing very significant precipitation amounts similar to what was observed during the flooding period.
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#references">
+   References
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="create-and-assess-an-extreme-precipitation-event-index-using-ncar-s-conus-404-convective-permitting-cp-global-circulation-model-gcm-grids-with-4-km-horizontal-resolution-compared-to-the-prism-monthly-climatology-precipitation-dataset-and-rain-gauge-data">
+<h1>Create and assess an extreme precipitation event index using NCAR’s CONUS 404 Convective Permitting (CP) Global Circulation Model (GCM) grids with 4-km horizontal resolution compared to the PRISM monthly climatology precipitation dataset, and rain gauge data<a class="headerlink" href="#create-and-assess-an-extreme-precipitation-event-index-using-ncar-s-conus-404-convective-permitting-cp-global-circulation-model-gcm-grids-with-4-km-horizontal-resolution-compared-to-the-prism-monthly-climatology-precipitation-dataset-and-rain-gauge-data" title="Permalink to this headline">#</a></h1>
+<section id="created-september-2022-by-serke-d-for-the-ncar-gis-group">
+<h2>- Created September 2022 by Serke, D. for the NCAR GIS Group<a class="headerlink" href="#created-september-2022-by-serke-d-for-the-ncar-gis-group" title="Permalink to this headline">#</a></h2>
+</section>
+<hr class="docutils" />
+<section id="purpose">
+<h2>Purpose<a class="headerlink" href="#purpose" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li></li>
+</ul>
+<section id="in-this-notebook-we-will-explore-how-to-create-a-single-sample-index-that-are-derived-from-more-complex-model-fields">
+<h3>In this notebook, we will explore how to create a single sample index that are derived from more complex model fields.<a class="headerlink" href="#in-this-notebook-we-will-explore-how-to-create-a-single-sample-index-that-are-derived-from-more-complex-model-fields" title="Permalink to this headline">#</a></h3>
+</section>
+<ul class="simple">
+<li></li>
+</ul>
+<section id="for-this-workflow-we-have-chosen-to-demonstrate-a-precipitation-extreme-index-using-monthly-temporal-resolution">
+<h3>For this workflow, we have chosen to demonstrate a ‘precipitation extreme’ index, using monthly temporal resolution.<a class="headerlink" href="#for-this-workflow-we-have-chosen-to-demonstrate-a-precipitation-extreme-index-using-monthly-temporal-resolution" title="Permalink to this headline">#</a></h3>
+</section>
+<ul class="simple">
+<li></li>
+</ul>
+<section id="the-index-values-will-then-be-compared-to-truth-data-in-the-form-of-rain-gauge-time-series-values-and-long-term-climate-normal-values-from-prism">
+<h3>The index values will then be compared to ‘truth’ data in the form of rain gauge time series values and long term climate normal values from <a class="reference external" href="https://prism.oregonstate.edu/">PRISM</a>.<a class="headerlink" href="#the-index-values-will-then-be-compared-to-truth-data-in-the-form-of-rain-gauge-time-series-values-and-long-term-climate-normal-values-from-prism" title="Permalink to this headline">#</a></h3>
+</section>
+<ul class="simple">
+<li></li>
+</ul>
+<section id="a-user-may-choose-to-implement-any-manner-of-index-or-indicator-following-the-template-in-this-workflow">
+<h3>A user may choose to implement any manner of index or indicator, following the template in this workflow<a class="headerlink" href="#a-user-may-choose-to-implement-any-manner-of-index-or-indicator-following-the-template-in-this-workflow" title="Permalink to this headline">#</a></h3>
+</section>
+<ul class="simple">
+<li></li>
+</ul>
+<section id="a-list-of-other-potential-indices-indicators-appears-in-these-links-wmo-climpact-indices-idmp-drought-indices">
+<h3>A list of other potential indices/indicators appears in these links: <a class="reference external" href="https://climpact-sci.org/indices/">WMO Climpact indices</a>, <a class="reference external" href="https://www.droughtmanagement.info/indices/">IDMP drought indices</a><a class="headerlink" href="#a-list-of-other-potential-indices-indicators-appears-in-these-links-wmo-climpact-indices-idmp-drought-indices" title="Permalink to this headline">#</a></h3>
+</section>
+<ul class="simple">
+<li></li>
+</ul>
+<section id="another-purpose-is-to-gain-a-better-understanding-of-the-background-output-fields-precision-and-utility-of-ncar-s-conus404-model-as-it-is-described-in-this-paper">
+<h3>Another purpose is to gain a better understanding of the background, output fields, precision, and utility of NCAR’s CONUS404 model as it is described in <a class="reference external" href="https://link.springer.com/article/10.1007/s00382-016-3327-9">this</a> paper<a class="headerlink" href="#another-purpose-is-to-gain-a-better-understanding-of-the-background-output-fields-precision-and-utility-of-ncar-s-conus404-model-as-it-is-described-in-this-paper" title="Permalink to this headline">#</a></h3>
+</section>
+</section>
+<hr class="docutils" />
+<section id="background">
+<h2>Background<a class="headerlink" href="#background" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li></li>
+</ul>
+<section id="a-review-of-convective-permitting-climate-modelling-was-the-topic-of-this-prein-et-al-2015-paper">
+<h3>A review of Convective-permitting climate modelling was the topic of this <a class="reference external" href="https://agupubs.onlinelibrary.wiley.com/doi/full/10.1002/2014RG000475">Prein et al. 2015</a> paper<a class="headerlink" href="#a-review-of-convective-permitting-climate-modelling-was-the-topic-of-this-prein-et-al-2015-paper" title="Permalink to this headline">#</a></h3>
+</section>
+<ul class="simple">
+<li></li>
+</ul>
+<section id="previous-research-by-prein-et-al-2022-and-prein-et-al-2020-has-demonstrated-that-with-high-resolution-convection-permitting-gcms-it-is-possible-to-identify-longer-duration-precipitation-events-eg-monsoon-mcss-via-the-frequency-of-days-with-synoptic-scale-moisture-advection-into-the-region-using-this-field-greatly-improves-predictability-over-directly-utilizing-modeled-precipitation-we-will-explore-that-possibility-here">
+<h3>Previous research by <span class="xref myst">Prein et al. 2022</span> and <a class="reference external" href="https://link.springer.com/content/pdf/10.1007/s00382-017-3993-2.pdf">Prein et al. 2020</a> has demonstrated that with high resolution, convection-permitting GCMs it is possible to identify longer duration precipitation events (eg monsoon, MCSs) via the frequency of days with synoptic-scale moisture advection into the region.  Using this field greatly improves predictability over directly utilizing modeled precipitation. We will explore that possibility here.<a class="headerlink" href="#previous-research-by-prein-et-al-2022-and-prein-et-al-2020-has-demonstrated-that-with-high-resolution-convection-permitting-gcms-it-is-possible-to-identify-longer-duration-precipitation-events-eg-monsoon-mcss-via-the-frequency-of-days-with-synoptic-scale-moisture-advection-into-the-region-using-this-field-greatly-improves-predictability-over-directly-utilizing-modeled-precipitation-we-will-explore-that-possibility-here" title="Permalink to this headline">#</a></h3>
+</section>
+<ul class="simple">
+<li></li>
+</ul>
+<section id="characteristics-of-ncar-s-conus404-model-as-discussed-in-liu-et-al-2017-include">
+<h3>Characteristics of NCAR’s CONUS404 model, as discussed in Liu et al. 2017 include:<a class="headerlink" href="#characteristics-of-ncar-s-conus404-model-as-discussed-in-liu-et-al-2017-include" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="runs-on-high-performance-computing-system-sponsored-by-the-usgs">
+<h3>- runs on high performance computing system sponsored by the USGS<a class="headerlink" href="#runs-on-high-performance-computing-system-sponsored-by-the-usgs" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="uses-weather-research-and-forecasting-wrf-model-version-3-9-1-with-4-x-4-km-horizontal-resolution-over-continental-us-conus-portion-of-canada">
+<h3>- uses Weather Research and Forecasting (WRF) model Version 3.9.1 with 4 x 4 km horizontal resolution over CONtinental US (CONUS) + portion of Canada<a class="headerlink" href="#uses-weather-research-and-forecasting-wrf-model-version-3-9-1-with-4-x-4-km-horizontal-resolution-over-continental-us-conus-portion-of-canada" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="hourly-temporal-output-frequency">
+<h3>- hourly temporal output frequency<a class="headerlink" href="#hourly-temporal-output-frequency" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="resolves-orography">
+<h3>- resolves orography<a class="headerlink" href="#resolves-orography" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="year-retrospective-simulation-oct-of-1979-2021">
+<h3>- 40-year retrospective simulation (Oct of 1979-2021)<a class="headerlink" href="#year-retrospective-simulation-oct-of-1979-2021" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="permits-convection">
+<h3>- permits convection<a class="headerlink" href="#permits-convection" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="initial-boundary-conditions-from-era5-1-hr-reanalysis-data">
+<h3>- initial boundary conditions from ERA5 1-hr reanalysis data<a class="headerlink" href="#initial-boundary-conditions-from-era5-1-hr-reanalysis-data" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="stretched-vertical-levels-with-50-mb-as-top-level">
+<h3>- 51 stretched vertical levels, with 50 mb as top level<a class="headerlink" href="#stretched-vertical-levels-with-50-mb-as-top-level" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="uses-thompson-and-eidhammer-2014-aerosol-aware-microphysics-package">
+<h3>- uses Thompson and Eidhammer (2014) aerosol-aware microphysics package<a class="headerlink" href="#uses-thompson-and-eidhammer-2014-aerosol-aware-microphysics-package" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="uses-rapid-radiative-transfer-model">
+<h3>- uses Rapid Radiative Transfer Model<a class="headerlink" href="#uses-rapid-radiative-transfer-model" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="uses-yonsei-university-planetary-boundary-layer">
+<h3>- uses Yonsei University planetary boundary layer<a class="headerlink" href="#uses-yonsei-university-planetary-boundary-layer" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="uses-the-noah-mp-land-surface-model-with-several-key-custom-modifications">
+<h3>- uses the Noah-MP land-surface model, with several key custom modifications<a class="headerlink" href="#uses-the-noah-mp-land-surface-model-with-several-key-custom-modifications" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="uses-the-miguel-macho-fan-mff-groundwater-scheme">
+<h3>- uses the Miguel Macho Fan (MFF) groundwater scheme<a class="headerlink" href="#uses-the-miguel-macho-fan-mff-groundwater-scheme" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="spectral-nudging-is-applied-to-remove-warm-season-bias">
+<h3>- spectral nudging is applied (to remove warm season bias)<a class="headerlink" href="#spectral-nudging-is-applied-to-remove-warm-season-bias" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="an-upgraded-lake-water-temperature-treatment-is-implemented">
+<h3>- an upgraded lake water temperature treatment is implemented<a class="headerlink" href="#an-upgraded-lake-water-temperature-treatment-is-implemented" title="Permalink to this headline">#</a></h3>
+<section id="id1">
+<h4><a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li></li>
+</ul>
+</section>
+</section>
+<section id="potential-advantages-of-high-resolution-cp-models-run-multiple-decades-include">
+<h3>Potential advantages of high resolution CP models run multiple decades include:<a class="headerlink" href="#potential-advantages-of-high-resolution-cp-models-run-multiple-decades-include" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="resolving-high-intensity-precipitation-events-which-are-not-possible-in-convection-parameterizing-models">
+<h3>- resolving high intensity precipitation events, which are not possible in convection-parameterizing models<a class="headerlink" href="#resolving-high-intensity-precipitation-events-which-are-not-possible-in-convection-parameterizing-models" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="better-resolve-evapotranspiration-et-the-most-uncertain-water-cycle-term">
+<h3>- better resolve evapotranspiration (ET), the most uncertain water cycle term<a class="headerlink" href="#better-resolve-evapotranspiration-et-the-most-uncertain-water-cycle-term" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="the-sum-of-these-two-is-better-resolved-runoff">
+<h3>- the sum of these two is better resolved runoff<a class="headerlink" href="#the-sum-of-these-two-is-better-resolved-runoff" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="extremes-are-typically-associated-with-mesoscale-processes-such-as-mesoscale-terrain-forcing-gust-fronts-dry-lines-and-mcss-which-are-typically-not-properly-depicted-in-gcms">
+<h3>- extremes are typically associated with mesoscale processes, such as mesoscale terrain forcing, gust fronts, dry lines, and MCSs, which are typically not properly depicted in GCMs<a class="headerlink" href="#extremes-are-typically-associated-with-mesoscale-processes-such-as-mesoscale-terrain-forcing-gust-fronts-dry-lines-and-mcss-which-are-typically-not-properly-depicted-in-gcms" title="Permalink to this headline">#</a></h3>
+<section id="id2">
+<h4><a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li></li>
+</ul>
+</section>
+</section>
+<section id="findings-from-the-conus404-compared-to-truth">
+<h3>Findings from the CONUS404 compared to ‘truth’:<a class="headerlink" href="#findings-from-the-conus404-compared-to-truth" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="quite-consistent-year-to-year-having-no-visible-deterioration-and-drifting-with-integration-time">
+<h3>- Quite consistent year to year, having no visible deterioration and drifting with integration time<a class="headerlink" href="#quite-consistent-year-to-year-having-no-visible-deterioration-and-drifting-with-integration-time" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="the-model-absolute-error-is-well-within-the-observational-uncertainty">
+<h3>- the model absolute error is well within the observational uncertainty<a class="headerlink" href="#the-model-absolute-error-is-well-within-the-observational-uncertainty" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="apparent-deficiency-is-the-mid-summer-rainfall-low-bias-over-the-central-u-s-possibly-indicative-of-too-weak-or-too-infrequent-propagating-convection-which-originates-from-the-rockies">
+<h3>- apparent deficiency is the mid-summer rainfall low bias over the central U.S., possibly indicative of too-weak (or too infrequent) propagating convection which originates from the Rockies<a class="headerlink" href="#apparent-deficiency-is-the-mid-summer-rainfall-low-bias-over-the-central-u-s-possibly-indicative-of-too-weak-or-too-infrequent-propagating-convection-which-originates-from-the-rockies" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="the-pattern-correlation-coeffcient-is-higher-than-0-96-for-all-seasons">
+<h3>- The pattern correlation coeffcient is higher than 0.96 for all seasons.<a class="headerlink" href="#the-pattern-correlation-coeffcient-is-higher-than-0-96-for-all-seasons" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="wrf-does-particularly-well-in-simulating-the-coastal-and-topographic-modifcations-over-the-western-conus-in-all-seasons">
+<h3>- WRF does particularly well in simulating the coastal and topographic modifcations over the western CONUS in all seasons<a class="headerlink" href="#wrf-does-particularly-well-in-simulating-the-coastal-and-topographic-modifcations-over-the-western-conus-in-all-seasons" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="confrms-the-models-capability-in-reproducing-orographic-precipitation">
+<h3>- confrms the model’s capability in reproducing orographic precipitation<a class="headerlink" href="#confrms-the-models-capability-in-reproducing-orographic-precipitation" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="the-average-precipitation-at-all-sites-has-a-small-negative-bias-of-just-2">
+<h3>- The average precipitation at all sites has a small negative bias of just −2 %<a class="headerlink" href="#the-average-precipitation-at-all-sites-has-a-small-negative-bias-of-just-2" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="able-to-replicate-the-observed-annual-cycle-accurately-timing-the-maximum-minimum-monthly-precipitation-and-the-departure-is-typically-a-few-percent-of-the-observations">
+<h3>- Able to replicate the observed annual cycle, accurately timing the maximum/minimum monthly precipitation, and the departure is typically a few percent of the observations<a class="headerlink" href="#able-to-replicate-the-observed-annual-cycle-accurately-timing-the-maximum-minimum-monthly-precipitation-and-the-departure-is-typically-a-few-percent-of-the-observations" title="Permalink to this headline">#</a></h3>
+<section id="id3">
+<h4><a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="for-this-exploratory-workflow-we-chose-to-demonstrate-the-standardized-precipitation-index-spi-developed-by-mckee-et-al-1993">
+<h3>For this exploratory workflow, we chose to demonstrate the Standardized Precipitation Index (SPI), developed by <a class="reference external" href="https://www.droughtmanagement.info/literature/AMS_Relationship_Drought_Frequency_Duration_Time_Scales_1993.pdf">McKee et al. (1993)</a><a class="headerlink" href="#for-this-exploratory-workflow-we-chose-to-demonstrate-the-standardized-precipitation-index-spi-developed-by-mckee-et-al-1993" title="Permalink to this headline">#</a></h3>
+</section>
+</section>
+<section id="workflow-outline">
+<h2>Workflow outline<a class="headerlink" href="#workflow-outline" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li></li>
+</ul>
+<section id="first-we-will-divide-this-complicated-sounding-process-down-into-prioritized-manageable-steps-in-this-workflow-outline">
+<h3>First, we will divide this complicated sounding process down into prioritized, manageable steps in this workflow outline…<a class="headerlink" href="#first-we-will-divide-this-complicated-sounding-process-down-into-prioritized-manageable-steps-in-this-workflow-outline" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="define-a-study-period">
+<h3>1. Define a study period<a class="headerlink" href="#define-a-study-period" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="collect-input-data">
+<h3>2. Collect input data<a class="headerlink" href="#collect-input-data" title="Permalink to this headline">#</a></h3>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>a. climatology - PRISM 4km x 4km horizontal resolution normals and time-series gridded datasets
+b. test        - CONUS 404 GCM, convection permitting, 4km x 4km horizontal resolution gridded dataset
+c. truth       - rain gauge/radar-derived Quantitative Precipitation Estimates (QPE) data
+</pre></div>
+</div>
+</section>
+<section id="set-up-user-s-python-environment">
+<h3>3. Set up user’s python environment<a class="headerlink" href="#set-up-user-s-python-environment" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="ingest-input-data">
+<h3>4. Ingest input data<a class="headerlink" href="#ingest-input-data" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="implement-an-extreme-precipitation-index">
+<h3>5. Implement an extreme precipitation index<a class="headerlink" href="#implement-an-extreme-precipitation-index" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="visualize-data">
+<h3>6. Visualize data<a class="headerlink" href="#visualize-data" title="Permalink to this headline">#</a></h3>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>a. fields from climatology  
+b. raw field from model
+c. index field from model and climatology 
+</pre></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="step-1-define-a-study-period">
+<h2>Step 1. Define a study period<a class="headerlink" href="#step-1-define-a-study-period" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li></li>
+</ul>
+<section id="first-we-need-to-identify-a-time-period-where-all-of-our-input-datasets-will-be-known-to-be-available-and-an-extreme-precipitation-event-is-known-to-have-occurred">
+<h3>First, we need to identify a time period where all of our input datasets will be known to be available and an extreme precipitation event is known to have occurred<a class="headerlink" href="#first-we-need-to-identify-a-time-period-where-all-of-our-input-datasets-will-be-known-to-be-available-and-an-extreme-precipitation-event-is-known-to-have-occurred" title="Permalink to this headline">#</a></h3>
+</section>
+<ul class="simple">
+<li></li>
+</ul>
+<section id="the-climatology-data-covers-at-least-the-last-30-years-with-monthly-4km-x-4km-solution-similar-to-the-conus404-model-grid">
+<h3>The climatology data covers at least the last 30 years, with monthly 4km x 4km solution (similar to the CONUS404 model grid)<a class="headerlink" href="#the-climatology-data-covers-at-least-the-last-30-years-with-monthly-4km-x-4km-solution-similar-to-the-conus404-model-grid" title="Permalink to this headline">#</a></h3>
+</section>
+<ul class="simple">
+<li></li>
+</ul>
+<section id="let-s-examine-the-colorado-front-range-flooding-from-2013-to-demonstrate-the-workflow">
+<h3>Let’s examine the <a class="reference external" href="https://en.wikipedia.org/wiki/2013_Colorado_floods">Colorado Front Range flooding from 2013</a> to demonstrate the workflow<a class="headerlink" href="#let-s-examine-the-colorado-front-range-flooding-from-2013-to-demonstrate-the-workflow" title="Permalink to this headline">#</a></h3>
+</section>
+<ul class="simple">
+<li></li>
+</ul>
+<section id="a-more-detailed-meteorological-analysis-of-the-event-was-presented-by-the-national-weather-service-nws-at-this-link">
+<h3>A more detailed meteorological analysis of the event was presented by the National Weather Service (NWS) <a class="reference external" href="https://www.weather.gov/media/bou/Sep_2013_Flood.pdf">at this link</a><a class="headerlink" href="#a-more-detailed-meteorological-analysis-of-the-event-was-presented-by-the-national-weather-service-nws-at-this-link" title="Permalink to this headline">#</a></h3>
+</section>
+<p><img alt="CO_flood" src="https://crd.lbl.gov/assets/Uploads/Water-Vapor-Systems-Seen-From-GOES-15-and-GOES-13-Satellites-12-September-2013.gif" /></p>
+</section>
+<section id="next-we-ll-collect-some-data">
+<h2>Next, we’ll collect some data …<a class="headerlink" href="#next-we-ll-collect-some-data" title="Permalink to this headline">#</a></h2>
+</section>
+<hr class="docutils" />
+<section id="step-2-collect-input-datasets">
+<h2>Step 2. Collect input datasets<a class="headerlink" href="#step-2-collect-input-datasets" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li></li>
+</ul>
+<section id="next-we-will-collect-the-input-datasets-for-the-climatology-gauge-dataset-2a-prism-and-the-gcm-gridded-dataset-2b-conus-404">
+<h3>Next, we will collect the input datasets for the climatology/gauge dataset (2a, PRISM), and the GCM gridded dataset (2b, CONUS 404):<a class="headerlink" href="#next-we-will-collect-the-input-datasets-for-the-climatology-gauge-dataset-2a-prism-and-the-gcm-gridded-dataset-2b-conus-404" title="Permalink to this headline">#</a></h3>
+</section>
+</section>
+<section id="id4">
+<h2><a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h2>
+<section id="a-climatology-dataset">
+<h3>2a climatology dataset -<a class="headerlink" href="#a-climatology-dataset" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="the-prism-30-year-precipitation-ppt-normals-dataset-can-be-downloaded-from-this-link">
+<h3>- The PRISM 30-year precipitation (ppt) normals dataset can be downloaded <a class="reference external" href="https://prism.oregonstate.edu/normals/">from this link</a><a class="headerlink" href="#the-prism-30-year-precipitation-ppt-normals-dataset-can-be-downloaded-from-this-link" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="and-the-prism-30-year-ppt-time-series-dataset-can-be-downloaded-from-this-link">
+<h3>- and the PRISM 30-year ppt time-series dataset can be downloaded <a class="reference external" href="https://prism.oregonstate.edu/explorer/">from this link</a><a class="headerlink" href="#and-the-prism-30-year-ppt-time-series-dataset-can-be-downloaded-from-this-link" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="for-this-workflow-the-extracted-contents-of-the-zip-file-were-pointed-to-a-subdirectory-created-under-this-path-d1-serke-projects-climate-gis-data">
+<h3>- For this workflow, the extracted contents of the .zip file were pointed to a subdirectory created under this path: /d1/serke/projects/CLIMATE_GIS/data/<a class="headerlink" href="#for-this-workflow-the-extracted-contents-of-the-zip-file-were-pointed-to-a-subdirectory-created-under-this-path-d1-serke-projects-climate-gis-data" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="id5">
+<h3><a class="headerlink" href="#id5" title="Permalink to this headline">#</a></h3>
+<p>2b GCM gridded dataset -</p>
+<section id="the-ncar-440-model-sample-file-can-be-accessed-here">
+<h4>- The NCAR 440 model sample file can be accessed here:<a class="headerlink" href="#the-ncar-440-model-sample-file-can-be-accessed-here" title="Permalink to this headline">#</a></h4>
+</section>
+<section id="files-will-be-publicly-available-within-a-few-months-via-ncar-s-rda">
+<h4>- Files will be publicly available within a few months via <a class="reference external" href="https://rda.ucar.edu/">NCAR’s RDA</a><a class="headerlink" href="#files-will-be-publicly-available-within-a-few-months-via-ncar-s-rda" title="Permalink to this headline">#</a></h4>
+</section>
+</section>
+<section id="id6">
+<h3><a class="headerlink" href="#id6" title="Permalink to this headline">#</a></h3>
+</section>
+</section>
+<hr class="docutils" />
+<section id="step-3-set-up-user-s-python-environment-for-a-linux-machine">
+<h2>Step 3. Set up user’s python environment (for a linux machine)<a class="headerlink" href="#step-3-set-up-user-s-python-environment-for-a-linux-machine" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li></li>
+</ul>
+<section id="install-conda-or-miniconda-on-your-machine-at-least-v3-x">
+<h3><a class="reference external" href="https://docs.conda.io/projects/conda/en/latest/user-guide/install/linux.html">Install conda or miniconda</a> on your machine, at least v3.x<a class="headerlink" href="#install-conda-or-miniconda-on-your-machine-at-least-v3-x" title="Permalink to this headline">#</a></h3>
+</section>
+<ul class="simple">
+<li></li>
+</ul>
+<section id="direct-your-browser-to-ncar-s-jupyterhub">
+<h3>Direct your browser to NCAR’s <a class="reference external" href="https://jupyterhub.hpc.ucar.edu/">Jupyterhub</a><a class="headerlink" href="#direct-your-browser-to-ncar-s-jupyterhub" title="Permalink to this headline">#</a></h3>
+</section>
+<ul class="simple">
+<li></li>
+</ul>
+<section id="change-directory-cd-into-your-python-working-directory">
+<h3>Change directory (cd) into your python working directory:<a class="headerlink" href="#change-directory-cd-into-your-python-working-directory" title="Permalink to this headline">#</a></h3>
+</section>
+<ul class="simple">
+<li></li>
+</ul>
+<section id="activate-your-preferred-python-environment-example-below">
+<h3>Activate your preferred python environment (example below):<a class="headerlink" href="#activate-your-preferred-python-environment-example-below" title="Permalink to this headline">#</a></h3>
+</section>
+<ul class="simple">
+<li></li>
+</ul>
+<section id="install-the-following-python-packages-using-the-example-command-line-below">
+<h3>Install the following python packages, using the example command line below:<a class="headerlink" href="#install-the-following-python-packages-using-the-example-command-line-below" title="Permalink to this headline">#</a></h3>
+</section>
+<ul class="simple">
+<li></li>
+</ul>
+<section id="import-installed-packages-into-python-environment">
+<h3>Import installed packages into python environment<a class="headerlink" href="#import-installed-packages-into-python-environment" title="Permalink to this headline">#</a></h3>
+</section>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span>   <span class="nn">wrf</span>                  <span class="kn">import</span> <span class="p">(</span><span class="n">to_np</span><span class="p">,</span> <span class="n">getvar</span><span class="p">,</span> <span class="n">smooth2d</span><span class="p">,</span> <span class="n">get_cartopy</span><span class="p">,</span> <span class="n">cartopy_xlim</span><span class="p">,</span> <span class="n">cartopy_ylim</span><span class="p">,</span> <span class="n">latlon_coords</span><span class="p">,</span> <span class="n">geo_bounds</span><span class="p">)</span>
+<span class="kn">from</span>   <span class="nn">netCDF4</span>              <span class="kn">import</span> <span class="n">Dataset</span>
+<span class="kn">import</span> <span class="nn">xarray</span>               <span class="k">as</span>     <span class="nn">xr</span>
+<span class="kn">import</span> <span class="nn">cartopy.crs</span>          <span class="k">as</span>     <span class="nn">crs</span>
+<span class="kn">from</span>   <span class="nn">cartopy.feature</span>      <span class="kn">import</span> <span class="n">NaturalEarthFeature</span>
+<span class="kn">import</span> <span class="nn">cartopy.feature</span>      <span class="k">as</span>     <span class="nn">cfeature</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;PROJ_LIB&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;CONDA_PREFIX&quot;</span><span class="p">],</span> <span class="s2">&quot;share&quot;</span><span class="p">,</span> <span class="s2">&quot;proj&quot;</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">__future__</span>             <span class="kn">import</span> <span class="n">print_function</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">rasterio</span>                                   <span class="c1"># to ingest raster format data, which are the .bil climatology file format </span>
+<span class="kn">from</span>   <span class="nn">rasterio.plot</span>        <span class="kn">import</span> <span class="n">show</span>           <span class="c1"># show mapview</span>
+<span class="kn">from</span>   <span class="nn">rasterio.plot</span>        <span class="kn">import</span> <span class="n">show_hist</span>      <span class="c1"># show histogram</span>
+<span class="kn">from</span>   <span class="nn">shapely.geometry</span>     <span class="kn">import</span> <span class="n">box</span>            <span class="c1">#</span>
+<span class="c1"># Display output of plots directly in Notebook</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span>    <span class="k">as</span>     <span class="nn">plt</span>            <span class="c1"># for plotting</span>
+<span class="kn">from</span>   <span class="nn">matplotlib.cm</span>        <span class="kn">import</span> <span class="n">get_cmap</span>
+<span class="kn">from</span>   <span class="nn">matplotlib.colors</span>    <span class="kn">import</span> <span class="n">ListedColormap</span>
+<span class="kn">import</span> <span class="nn">numpy</span>                <span class="k">as</span>     <span class="nn">np</span>             <span class="c1"># for array functionality</span>
+<span class="kn">import</span> <span class="nn">pandas</span>               <span class="k">as</span>     <span class="nn">pd</span>             <span class="c1"># for dataframes</span>
+<span class="kn">import</span> <span class="nn">geopandas</span>            <span class="k">as</span>     <span class="nn">gpd</span>            <span class="c1">#</span>
+<span class="kn">from</span>   <span class="nn">scipy.stats</span>          <span class="kn">import</span> <span class="n">gamma</span>          <span class="c1">#</span>
+<span class="c1">#import pyPRISMClimate                             # for PRISM dataset ingest</span>
+<span class="c1">#from   pyPRISMClimate       import get_prism_monthlys, get_prism_monthly_single, get_prism_dailys, get_prism_daily_single,get_prism_normals</span>
+<span class="c1">#from   pyPRISMClimate.utils import prism_iterator #</span>
+<span class="kn">import</span> <span class="nn">statistics</span>                                 <span class="c1"># for stats functionality</span>
+<span class="kn">import</span> <span class="nn">warnings</span>                                   <span class="c1"># </span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>                 <span class="c1"># silence warnings</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="step-4-ingest-input-datasets">
+<h2>Step 4. Ingest input datasets<a class="headerlink" href="#step-4-ingest-input-datasets" title="Permalink to this headline">#</a></h2>
+<section id="a-prism-monthly-precipitation-climatology-gridded-dataset">
+<h3>4a. PRISM Monthly Precipitation Climatology gridded dataset:<a class="headerlink" href="#a-prism-monthly-precipitation-climatology-gridded-dataset" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="n">prism_dir</span>                          <span class="o">=</span> <span class="s1">&#39;/d1/serke/projects/CLIMATE_GIS/data/&#39;</span>
+<span class="n">prism_normals_dir</span>                  <span class="o">=</span> <span class="s1">&#39;PRISM_ppt_30yr_normal_4kmM3_09_bil/&#39;</span>
+<span class="n">prism_timeseries_dir</span>               <span class="o">=</span> <span class="s1">&#39;PRISM_ppt_30yr_timeseries_4kmM3_BLDR_csv/&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="n">prism_timeseries_name</span>              <span class="o">=</span> <span class="s1">&#39;PRISM_ppt_stable_4km_199101_202012_40.0335_-105.2520.csv&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="n">ppt_30yr_boulderCO_timeseries</span>      <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">prism_dir</span> <span class="o">+</span> <span class="n">prism_timeseries_dir</span> <span class="o">+</span> <span class="n">prism_timeseries_name</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="c1">#ppt_30yr_boulderCO_timeseries</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="c1"># array of september month indices starts with the 8th and includes every 12th index until the last index (number 359)</span>
+<span class="n">ind_sept</span>                           <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">359</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span>
+<span class="c1"># subset the original dataframe using iloc index method</span>
+<span class="n">ppt_30yr_sept_boulderCO_timeseries</span> <span class="o">=</span> <span class="n">ppt_30yr_boulderCO_timeseries</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">ind_sept</span><span class="p">]</span>
+<span class="n">ppt_30yr_sept_boulderCO_timeseries</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="n">prism_iterator</span><span class="p">(</span><span class="n">prism_dir</span> <span class="o">+</span> <span class="n">prism_normals_dir</span><span class="p">,</span> <span class="n">recursive</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="define-the-directory-path-that-the-ppt-normals-bil-format-subdirectories-and-ppt-point-time-series-files-csv-format-were-stored-in-by-the-user-in-step-2a">
+<h3>Define the directory path that the ppt normals (.bil format) subdirectories and ppt point time-series files (.csv format) were stored in by the user in Step 2a:<a class="headerlink" href="#define-the-directory-path-that-the-ppt-normals-bil-format-subdirectories-and-ppt-point-time-series-files-csv-format-were-stored-in-by-the-user-in-step-2a" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="load-the-30-year-ppt-time-series-from-near-boulder-co-from-the-csv-file-skipping-the-header-lines-into-a-pandas-dataframe">
+<h3>Load the 30-year ppt time-series from near Boulder, CO from the .csv file (skipping the header lines) into a pandas dataframe:<a class="headerlink" href="#load-the-30-year-ppt-time-series-from-near-boulder-co-from-the-csv-file-skipping-the-header-lines-into-a-pandas-dataframe" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="now-subset-the-dataframe-to-include-only-ppt-values-from-all-30-septembers">
+<h3>Now subset the dataframe to include only ppt values from all 30 septembers<a class="headerlink" href="#now-subset-the-dataframe-to-include-only-ppt-values-from-all-30-septembers" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="now-lets-work-with-the-bil-ppt-normals-dataset-execute-the-prism-iterator-function-that-outputs-information-on-the-available-bil-files-in-that-path">
+<h3>Now, lets work with the .bil ppt normals dataset.  Execute the ‘prism_iterator’ function that outputs information on the available .bil files in that path<a class="headerlink" href="#now-lets-work-with-the-bil-ppt-normals-dataset-execute-the-prism-iterator-function-that-outputs-information-on-the-available-bil-files-in-that-path" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="note-the-only-variable-is-ppt-or-daily-precipitation-amount-in-mm-since-that-was-the-only-field-requested-from-the-prism-data-download-interface">
+<h3>NOTE: The only variable is ‘ppt’, or daily precipitation amount in mm, since that was the only field requested from the PRISM data download interface<a class="headerlink" href="#note-the-only-variable-is-ppt-or-daily-precipitation-amount-in-mm-since-that-was-the-only-field-requested-from-the-prism-data-download-interface" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="n">ppt_sept_normal</span> <span class="o">=</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">prism_dir</span> <span class="o">+</span> <span class="n">prism_normals_dir</span> <span class="o">+</span> <span class="s1">&#39;/PRISM_ppt_30yr_normal_4kmM3_09_bil.bil&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="n">ppt_sept_normal</span><span class="o">.</span><span class="n">meta</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">ppt_sept_normal</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="n">ppt_sept_normal</span><span class="o">.</span><span class="n">crs</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="n">ppt_sept_normal</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="n">ppt_sept_normal</span><span class="o">.</span><span class="n">count</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="lets-now-load-the-30-year-normals-file-for-september-month-09-in-the-bil-filename-using-the-full-path-field-above">
+<h3>Lets now load the 30-year normals file for September (month ‘09’ in the .bil filename) using the ‘full_path’ field above:<a class="headerlink" href="#lets-now-load-the-30-year-normals-file-for-september-month-09-in-the-bil-filename-using-the-full-path-field-above" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="display-some-raster-properties-metadata-type-crs-shape-and-layer-count">
+<h3>Display some raster properties (metadata, type, crs, shape, and layer count):<a class="headerlink" href="#display-some-raster-properties-metadata-type-crs-shape-and-layer-count" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="b-ncar-conus440-gridded-dataset-borrowed-from-https-wrf-python-readthedocs-io-en-latest-basic-usage-html">
+<h3>4b. NCAR CONUS440 gridded dataset (borrowed from <a class="reference external" href="https://wrf-python.readthedocs.io/en/latest/basic_usage.html">https://wrf-python.readthedocs.io/en/latest/basic_usage.html</a>):<a class="headerlink" href="#b-ncar-conus440-gridded-dataset-borrowed-from-https-wrf-python-readthedocs-io-en-latest-basic-usage-html" title="Permalink to this headline">#</a></h3>
+<section id="access-the-conus404-data-files-in-two-possible-ways">
+<h4>Access the CONUS404 data files in two possible ways:<a class="headerlink" href="#access-the-conus404-data-files-in-two-possible-ways" title="Permalink to this headline">#</a></h4>
+</section>
+<section id="via-ncar-s-casper-supercomputer-on-glade-or">
+<h4>1. via NCAR’s casper supercomputer on glade, or<a class="headerlink" href="#via-ncar-s-casper-supercomputer-on-glade-or" title="Permalink to this headline">#</a></h4>
+</section>
+<section id="via-manual-access-files-on-local-storage">
+<h4>2. via manual access files on local storage<a class="headerlink" href="#via-manual-access-files-on-local-storage" title="Permalink to this headline">#</a></h4>
+</section>
+<section id="both-are-demonstrated-below">
+<h4>Both are demonstrated below …<a class="headerlink" href="#both-are-demonstrated-below" title="Permalink to this headline">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1. Access CONUS404 data files via NCAR&#39;s casper on glade</span>
+<span class="c1">#    * This method was outlined here: https://ldcpy.readthedocs.io/en/v0.15.4/notebooks/LargeDataGladeNotebook.html</span>
+<span class="c1">#    * requires the ldcpy module</span>
+<span class="c1">#    * requires access to the NCAR machine and a project charge account</span>
+
+<span class="c1"># --- Import Modules --- #</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">glob</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="c1">## Add ldcpy root to system path (MODIFY FOR YOUR LDCPY CODE LOCATION)</span>
+<span class="c1">#sys.path.insert(0, &#39;/glade/u/home/serke/newldcpy/ldcpy&#39;)</span>
+<span class="c1">#import ldcpy</span>
+<span class="kn">import</span> <span class="nn">numpy</span>            <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">xarray</span>           <span class="k">as</span> <span class="nn">xr</span>
+<span class="kn">import</span> <span class="nn">pandas</span>           <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">geopandas</span>        <span class="k">as</span> <span class="nn">gpd</span>
+<span class="kn">import</span> <span class="nn">numcodecs</span>
+<span class="kn">import</span> <span class="nn">dask</span>
+<span class="kn">from</span>   <span class="nn">dask.distributed</span> <span class="kn">import</span> <span class="n">Client</span><span class="p">,</span> <span class="n">progress</span><span class="p">,</span> <span class="n">LocalCluster</span> 
+<span class="c1">#from   dask.distributed import performance_report</span>
+<span class="kn">from</span>   <span class="nn">dask.diagnostics</span> <span class="kn">import</span> <span class="n">ProgressBar</span>
+<span class="c1">#import ncar_jobqueue</span>
+<span class="c1">#from   ncar_jobqueue    import NCARCluster</span>
+<span class="kn">from</span>   <span class="nn">dask_jobqueue</span>    <span class="kn">import</span> <span class="n">PBSCluster</span>
+<span class="kn">import</span> <span class="nn">holoviews</span>        <span class="k">as</span>     <span class="nn">hv</span> 
+<span class="kn">import</span> <span class="nn">hvplot</span>
+<span class="kn">import</span> <span class="nn">glob</span>
+<span class="kn">import</span> <span class="nn">zarr</span>
+<span class="c1"># --- End Import Modules --- #</span>
+
+<span class="n">tic</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Process initiated at </span><span class="si">{0}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">ctime</span><span class="p">()))</span>
+<span class="c1">## if you want to use the DASK daskboard, then modify the code below and run it</span>
+<span class="c1">## dask.config.set(</span>
+<span class="c1">##    {&#39;distributed.dashboard.link&#39;: &#39;https://jupyterhub.hpc.ucar.edu/ch/user/abaker/proxy/{port}/status&#39;}</span>
+<span class="c1">## )</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Process initiated at Wed Sep 28 22:19:54 2022
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Connect to DASK distributed cluster:</span>
+<span class="c1">#   * The cluster object is for a single compute node</span>
+<span class="n">cluster</span> <span class="o">=</span> <span class="n">PBSCluster</span><span class="p">(</span>
+    <span class="n">cores</span>         <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> 
+    <span class="n">queue</span>         <span class="o">=</span> <span class="s1">&#39;casper&#39;</span><span class="p">,</span> 
+    <span class="n">project</span>       <span class="o">=</span> <span class="s1">&#39;NSAP0003&#39;</span><span class="p">,</span> 
+    <span class="n">memory</span>        <span class="o">=</span> <span class="s1">&#39;25GB&#39;</span><span class="p">,</span> 
+    <span class="n">walltime</span>      <span class="o">=</span> <span class="s1">&#39;02:00:00&#39;</span><span class="p">,</span>  
+    <span class="n">death_timeout</span> <span class="o">=</span> <span class="mi">75</span><span class="p">,</span>
+    <span class="n">resource_spec</span> <span class="o">=</span> <span class="s1">&#39;select=1:ncpus=2:mem=25GB&#39;</span><span class="p">)</span>
+
+<span class="c1"># scale as needed</span>
+<span class="n">n_jobs</span>       <span class="o">=</span> <span class="mi">4</span>
+<span class="n">n_jobs_start</span> <span class="o">=</span> <span class="n">n_jobs</span>
+<span class="c1">#cluster.scale(jobs=n_jobs)</span>
+<span class="n">cluster</span><span class="o">.</span><span class="n">adapt</span><span class="p">(</span><span class="n">minimum_jobs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">maximum_jobs</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+<span class="n">cluster</span>
+
+<span class="c1"># The scheduler creates a normal-looking job script that it can submit multiple times to the queue:</span>
+<span class="c1"># Look at the job script (optional)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cluster</span><span class="o">.</span><span class="n">job_script</span><span class="p">())</span>
+
+<span class="c1"># Connect client to the remote dask workers</span>
+<span class="n">client</span>                       <span class="o">=</span> <span class="n">Client</span><span class="p">(</span><span class="n">cluster</span><span class="p">)</span>
+<span class="n">client</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define data file paths</span>
+<span class="n">CONUS404_casper_event_dir</span>   <span class="o">=</span> <span class="s1">&#39;/glade/work/serke/GIS/data/CONUS404/&#39;</span>
+<span class="n">CONUS404_casper_event_yyyy</span>  <span class="o">=</span> <span class="s1">&#39;WY2013/&#39;</span>
+<span class="c1">#CONUS404_casper_event_yyyy  = &#39;test/&#39;</span>
+<span class="c1"># define data file name</span>
+<span class="n">CONUS404_constant_data_name</span> <span class="o">=</span> <span class="s1">&#39;constant/wrfconstants_d01_1979-10-01_00:00:00.nc4&#39;</span>
+<span class="c1"># list directory contents</span>
+<span class="n">CONUS404_alltestfiles</span>       <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;/glade/work/serke/GIS/data/CONUS404/WY2013/*&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="c1"># print info on available files</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Number of files to process = &#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">CONUS404_alltestfiles</span><span class="p">))</span>
+
+<span class="c1"># open first data file with xarray module</span>
+<span class="n">geogrid0</span>                     <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">CONUS404_alltestfiles</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+<span class="c1"># extract the ACumulatedRAIN (ACRAINLSM) field, will aggregate all other times&#39; data to this variable</span>
+<span class="c1"># also, squeeze out the singleton 3rd dimension so shape matches XLAT and XLONG</span>
+<span class="n">ACRAINLSM</span>                    <span class="o">=</span> <span class="n">geogrid0</span><span class="o">.</span><span class="n">ACRAINLSM</span><span class="o">.</span><span class="n">squeeze</span><span class="p">()</span>
+<span class="c1"># Loop over each hourly file in CONUS404_alltestfiles list</span>
+<span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">fname</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">CONUS404_alltestfiles</span><span class="p">):</span>
+    <span class="c1">#print(index)</span>
+    <span class="c1"># Extract the &#39;ACRAINLSM&#39; variable for hourly file number &#39;index&#39;</span>
+    <span class="n">geogrid</span>       <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">CONUS404_alltestfiles</span><span class="p">[</span><span class="n">index</span><span class="p">]))</span>
+    <span class="c1"># sum previous (ACRAINLSM) and current (geogrid[index]) xarrays of accumulated precip</span>
+    <span class="n">ACRAINLSM</span>     <span class="o">=</span> <span class="n">ACRAINLSM</span> <span class="o">+</span> <span class="n">geogrid</span><span class="o">.</span><span class="n">ACRAINLSM</span><span class="o">.</span><span class="n">squeeze</span><span class="p">()</span>
+
+<span class="c1"># load constant field nc file</span>
+<span class="n">CONUS404_constant_nc</span>         <span class="o">=</span> <span class="n">Dataset</span><span class="p">(</span><span class="n">CONUS404_casper_event_dir</span> <span class="o">+</span> <span class="n">CONUS404_constant_data_name</span><span class="p">)</span>
+<span class="c1"># Get the lat/lon coordinates from constant file</span>
+<span class="n">XLAT</span>                         <span class="o">=</span> <span class="n">getvar</span><span class="p">(</span><span class="n">CONUS404_constant_nc</span><span class="p">,</span> <span class="s2">&quot;XLAT&quot;</span><span class="p">)</span>
+<span class="n">XLONG</span>                        <span class="o">=</span> <span class="n">getvar</span><span class="p">(</span><span class="n">CONUS404_constant_nc</span><span class="p">,</span> <span class="s2">&quot;XLONG&quot;</span><span class="p">)</span>
+<span class="n">XTIME</span>                        <span class="o">=</span> <span class="n">getvar</span><span class="p">(</span><span class="n">CONUS404_constant_nc</span><span class="p">,</span> <span class="s2">&quot;XTIME&quot;</span><span class="p">)</span>
+
+<span class="c1"># check that variable shapes are consistent</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;  ACRAINLSM  shape = &#39;</span><span class="p">,</span> <span class="n">ACRAINLSM</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;  XLAT shape       = &#39;</span><span class="p">,</span> <span class="n">XLAT</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;  XLONG shape      = &#39;</span><span class="p">,</span> <span class="n">XLONG</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Number of files =  216
+ACRAINLSM  shape =  (1015, 1367)
+XLAT shape       =  (1015, 1367)
+XLONG shape      =  (1015, 1367)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Close the dask cluster and client</span>
+<span class="n">cluster</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="n">client</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 2. Access CONUS404 data files via local storage</span>
+<span class="c1"># define data file path      </span>
+<span class="n">CONUS404_data_path</span>           <span class="o">=</span> <span class="s1">&#39;/d1/serke/projects/CLIMATE_GIS/data/CONUS404/&#39;</span>
+<span class="c1"># define data file names</span>
+<span class="n">CONUS404_constant_data_name</span>  <span class="o">=</span> <span class="s1">&#39;wrfconstants_d01_1979-10-01_00:00:00.nc4&#39;</span>
+<span class="n">CONUS404_2d_data_name1</span>       <span class="o">=</span> <span class="s1">&#39;wrf2d_d01_2013-09-12_06:00:00&#39;</span>
+<span class="n">CONUS404_2d_data_name2</span>       <span class="o">=</span> <span class="s1">&#39;wrf2d_d01_2013-09-12_12:00:00&#39;</span>
+<span class="c1"># load constant field nc file</span>
+<span class="n">CONUS404_constant_nc</span>         <span class="o">=</span> <span class="n">Dataset</span><span class="p">(</span><span class="n">CONUS404_data_path</span> <span class="o">+</span> <span class="n">CONUS404_constant_data_name</span><span class="p">)</span>
+<span class="c1"># load 2d field nc file</span>
+<span class="n">CONUS404_2d_nc1</span>              <span class="o">=</span> <span class="n">Dataset</span><span class="p">(</span><span class="n">CONUS404_data_path</span> <span class="o">+</span> <span class="n">CONUS404_2d_data_name1</span><span class="p">)</span>
+<span class="n">CONUS404_2d_nc2</span>              <span class="o">=</span> <span class="n">Dataset</span><span class="p">(</span><span class="n">CONUS404_data_path</span> <span class="o">+</span> <span class="n">CONUS404_2d_data_name2</span><span class="p">)</span>
+<span class="c1"># Get the lat/lon coordinates from constant file</span>
+<span class="n">XLAT</span>                         <span class="o">=</span> <span class="n">getvar</span><span class="p">(</span><span class="n">CONUS404_constant_nc</span><span class="p">,</span> <span class="s2">&quot;XLAT&quot;</span><span class="p">)</span>
+<span class="n">XLONG</span>                        <span class="o">=</span> <span class="n">getvar</span><span class="p">(</span><span class="n">CONUS404_constant_nc</span><span class="p">,</span> <span class="s2">&quot;XLONG&quot;</span><span class="p">)</span>
+<span class="n">XTIME</span>                        <span class="o">=</span> <span class="n">getvar</span><span class="p">(</span><span class="n">CONUS404_constant_nc</span><span class="p">,</span> <span class="s2">&quot;XTIME&quot;</span><span class="p">)</span>
+<span class="c1"># Get desired 2d model fields (fix to handle input from separate files from: https://groups.google.com/a/ucar.edu/g/wrfpython-talk/c/5-mwY1_EC94?pli=1)</span>
+<span class="c1">#ACRAINLSM                   = getvar(CONUS404_2d_nc, &quot;ACRAINLSM&quot;, meta=False)</span>
+<span class="n">geogrid1</span>                     <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">CONUS404_data_path</span> <span class="o">+</span> <span class="n">CONUS404_2d_data_name1</span><span class="p">)</span>
+<span class="n">geogrid2</span>                     <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">CONUS404_data_path</span> <span class="o">+</span> <span class="n">CONUS404_2d_data_name2</span><span class="p">)</span>
+<span class="c1"># display field characteristics</span>
+<span class="c1">#print(&#39;XLAT shape = &#39;,      XLAT.shape)</span>
+<span class="c1">#print(&#39;XLONG shape = &#39;,     XLONG.shape)</span>
+<span class="c1">#print(&#39;ACRAINLSM shape = &#39;, geogrid1.ACRAINLSM.shape)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="c1"># THIS IS SAMPLE CODE JUST KEEPING IT AROUND FOR NOW</span>
+<span class="c1">## Get the latitude and longitude coordinate.  This is usually needed for plotting.</span>
+<span class="c1">#lats, lons        = latlon_coords(ACRAINLSM)</span>
+<span class="c1">## Get the geobounds for the variable</span>
+<span class="c1">#bounds            = geo_bounds(ACRAINLSM)</span>
+<span class="c1">#print (bounds)</span>
+<span class="c1">## Get the geographic boundaries for a subset of the domain</span>
+<span class="c1">#ACRAINLSM_subset        = ACRAINLSM[150:250, 150:250]</span>
+<span class="c1">#ACRAINLSM_subset_bounds = geo_bounds(ACRAINLSM_subset)</span>
+<span class="c1">#print (ACRAINLSM_subset_bounds)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+<hr class="docutils" />
+<section id="step-5-implement-an-extreme-precipitation-index">
+<h2>Step 5. Implement an extreme precipitation index<a class="headerlink" href="#step-5-implement-an-extreme-precipitation-index" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li></li>
+</ul>
+<section id="id7">
+<h3>For this exploratory workflow, we chose to demonstrate the Standardized Precipitation Index (SPI), developed by <a class="reference external" href="https://www.droughtmanagement.info/literature/AMS_Relationship_Drought_Frequency_Duration_Time_Scales_1993.pdf">McKee et al. (1993)</a><a class="headerlink" href="#id7" title="Permalink to this headline">#</a></h3>
+</section>
+<ul class="simple">
+<li></li>
+</ul>
+<section id="spi-is-simply-the-difference-of-precipitation-from-the-mean-for-a-specified-time-period-divided-by-the-standard-deviation-where-the-mean-and-standard-deviation-are-determined-from-past-records">
+<h3>SPI is simply the difference of precipitation from the mean for a specified time period divided by the standard deviation where the mean and standard deviation are determined from past records.<a class="headerlink" href="#spi-is-simply-the-difference-of-precipitation-from-the-mean-for-a-specified-time-period-divided-by-the-standard-deviation-where-the-mean-and-standard-deviation-are-determined-from-past-records" title="Permalink to this headline">#</a></h3>
+</section>
+<ul class="simple">
+<li></li>
+</ul>
+<section id="this-link-provides-a-more-detailed-description-strengths-and-weaknesses-of-the-spi-index">
+<h3><a class="reference external" href="https://climatedataguide.ucar.edu/climate-data/standardized-precipitation-index-spi">This link</a> provides a more detailed description, strengths, and weaknesses of the SPI index<a class="headerlink" href="#this-link-provides-a-more-detailed-description-strengths-and-weaknesses-of-the-spi-index" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="for-this-example-we-are-using-monthly-resolution-data-over-a-30-year-period">
+<h3>….. For this example, we are using monthly resolution data over a 30 year period<a class="headerlink" href="#for-this-example-we-are-using-monthly-resolution-data-over-a-30-year-period" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="n">ppt_30yr_sept_boulderCO_timeseries_mean</span> <span class="o">=</span> <span class="n">ppt_30yr_sept_boulderCO_timeseries</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">ppt_30yr_sept_boulderCO_timeseries_std</span>  <span class="o">=</span> <span class="n">ppt_30yr_sept_boulderCO_timeseries</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+<span class="n">ppt_30yr_sept_boulderCO_timeseries_var</span>  <span class="o">=</span> <span class="n">statistics</span><span class="o">.</span><span class="n">variance</span><span class="p">(</span><span class="n">ppt_30yr_sept_boulderCO_timeseries</span><span class="p">[</span><span class="s1">&#39;ppt (inches)&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="n">SPI_PRISM_atBldr_forSepts</span>               <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">ppt_30yr_sept_boulderCO_timeseries</span><span class="p">[</span><span class="s1">&#39;ppt (inches)&#39;</span><span class="p">])</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">ppt_30yr_sept_boulderCO_timeseries_mean</span><span class="p">))</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">ppt_30yr_sept_boulderCO_timeseries_std</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="n">SPI_CONUS404_atBldr_forSept2013</span>         <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="mf">9.84</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="mf">1.94</span><span class="p">))</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="mf">2.71</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;     SPI for September, 2013 using CONUS404 dataset at Boulder, CO = &#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">SPI_CONUS404_atBldr_forSept2013</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     SPI for September, 2013 using CONUS404 dataset at Boulder, CO =  3.0
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="let-s-calculate-these-statistical-measures-for-use-in-the-spi">
+<h3>Let’s calculate these statistical measures for use in the SPI:<a class="headerlink" href="#let-s-calculate-these-statistical-measures-for-use-in-the-spi" title="Permalink to this headline">#</a></h3>
+</section>
+</section>
+<section id="step-6-visualize-data">
+<h2>Step 6. Visualize data<a class="headerlink" href="#step-6-visualize-data" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li></li>
+</ul>
+<section id="display-mapview-of-ppt-normal-values-across-conus-representing-the-last-30-years-from-the-gridded-prism-climatology">
+<h3>Display mapview of ppt normal values across CONUS representing the last 30 years from the gridded PRISM climatology:<a class="headerlink" href="#display-mapview-of-ppt-normal-values-across-conus-representing-the-last-30-years-from-the-gridded-prism-climatology" title="Permalink to this headline">#</a></h3>
+</section>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="n">show</span><span class="p">(</span><span class="n">ppt_sept_normal</span><span class="p">,</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;PRISM - normal precipitation amount [mm] for September&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li></li>
+</ul>
+<section id="display-histogram-of-ppt-normal-values-across-conus-representing-the-last-30-years-from-the-gridded-prism-climatology">
+<h3>Display histogram of ppt normal values across CONUS representing the last 30 years from the gridded PRISM climatology:<a class="headerlink" href="#display-histogram-of-ppt-normal-values-across-conus-representing-the-last-30-years-from-the-gridded-prism-climatology" title="Permalink to this headline">#</a></h3>
+</section>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="n">show_hist</span><span class="p">(</span><span class="n">ppt_sept_normal</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">stacked</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">histtype</span><span class="o">=</span><span class="s1">&#39;stepfilled&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;PRISM - Precipitation amount [mm] for September&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li></li>
+</ul>
+<section id="display-time-series-of-september-monthly-ppt-field-values-from-1991-2020-from-point-data-representing-boulder-co">
+<h3>Display time-series of september monthly ppt field values from 1991-2020 from point data representing Boulder, CO:<a class="headerlink" href="#display-time-series-of-september-monthly-ppt-field-values-from-1991-2020-from-point-data-representing-boulder-co" title="Permalink to this headline">#</a></h3>
+</section>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="c1"># use plot() method on the dataframe</span>
+<span class="n">ppt_30yr_sept_boulderCO_timeseries</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s1">&#39;Date&#39;</span><span class="p">,</span> <span class="s1">&#39;ppt (inches)&#39;</span><span class="p">,</span> <span class="n">grid</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><img alt="PRISM_atBldr_septs_precip" src="PRISM_atBoulder_septs_precip.png" /></p>
+<ul class="simple">
+<li></li>
+</ul>
+<section id="plot-density-normalized-histogram-of-september-ppt-values-and-fit-to-a-gamma-distribution">
+<h3>Plot density normalized histogram of september ppt values and fit to a Gamma Distribution:<a class="headerlink" href="#plot-density-normalized-histogram-of-september-ppt-values-and-fit-to-a-gamma-distribution" title="Permalink to this headline">#</a></h3>
+</section>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="c1"># define x-values as from 0 to 16 inches, with 6 increments per inch of ppt (16*6=96 values)</span>
+<span class="n">x</span>                 <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">96</span><span class="p">)</span>
+<span class="c1"># fit a Gamma distribution to 30-yr sept ppt values</span>
+<span class="n">shape</span><span class="p">,</span> <span class="n">loc</span><span class="p">,</span> <span class="n">scale</span> <span class="o">=</span> <span class="n">gamma</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">ppt_30yr_sept_boulderCO_timeseries</span><span class="p">[</span><span class="s1">&#39;ppt (inches)&#39;</span><span class="p">],</span> <span class="n">floc</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">y</span>                 <span class="o">=</span> <span class="n">gamma</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">shape</span><span class="p">,</span> <span class="n">loc</span><span class="p">,</span> <span class="n">scale</span><span class="p">)</span>
+<span class="c1"># first plot histogram of the observed ppt values (in blue, with 16 bins of 1 in increments)</span>
+<span class="n">ppt_30yr_sept_boulderCO_timeseries</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="c1"># second plot the Gamma distribution x and y values over top (orange line)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Fitted Gamma (orange) to 30-yr Sept. ppt field (blue)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;ppt [in]&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Frequency&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">14.0</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="s1">&#39;2013&#39;</span><span class="p">,</span> <span class="n">Fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">16.0</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><img alt="PRISM_atBldr_septs_wGammaDist" src="PRISM_atBoulder_septs_wGammaDist.png" /></p>
+<ul class="simple">
+<li></li>
+</ul>
+<section id="plot-a-timeline-of-spi-values-september-1991-through-september-2020">
+<h3>Plot a timeline of SPI values September 1991 through September 2020:<a class="headerlink" href="#plot-a-timeline-of-spi-values-september-1991-through-september-2020" title="Permalink to this headline">#</a></h3>
+</section>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="c1"># define custom wet/dry colormap</span>
+<span class="n">cMap</span> <span class="o">=</span> <span class="n">ListedColormap</span><span class="p">([</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="s1">&#39;orange&#39;</span><span class="p">,</span> <span class="s1">&#39;yellow&#39;</span><span class="p">,</span> <span class="s1">&#39;greenyellow&#39;</span><span class="p">,</span> <span class="s1">&#39;darkgreen&#39;</span><span class="p">])</span>
+<span class="c1"># plot SPI timeline</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.figsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Year&#39;</span><span class="p">,</span> <span class="n">Fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">ax</span>   <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+<span class="c1">#fig, ax      = plt.subplots(1,1)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">SPI</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">)),</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cMap</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span> <span class="n">extent</span><span class="o">=</span><span class="p">[</span><span class="mi">1991</span><span class="p">,</span> <span class="mi">2020</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+<span class="c1"># remove y-axis labels/ticks</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="c1"># add custom colorbar</span>
+<span class="n">cbar</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">orientation</span><span class="o">=</span><span class="s1">&#39;horizontal&#39;</span><span class="p">)</span>
+<span class="n">cbar</span><span class="o">.</span><span class="n">set_ticks</span><span class="p">([</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+<span class="c1">#cbar.ax.set_yticklabels([&#39;&lt;-2&#39;, &#39;-1&#39;, &#39;0&#39;, &#39;1&#39;, &#39;&gt;2&#39;], Fontsize=20)</span>
+<span class="n">cbar</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">([</span><span class="s1">&#39;extreme dry&#39;</span><span class="p">,</span> <span class="s1">&#39;dry&#39;</span><span class="p">,</span> <span class="s1">&#39;normal&#39;</span><span class="p">,</span> <span class="s1">&#39;wet&#39;</span><span class="p">,</span> <span class="s1">&#39;extreme wet&#39;</span><span class="p">],</span> <span class="n">Fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">cbar</span><span class="o">.</span><span class="n">set_label</span><span class="p">(</span><span class="s1">&#39;S P I&#39;</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">Fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><img alt="SPI_PRISM" src="SPI_atBoulder_septs_using_PRISM.png" /></p>
+<ul class="simple">
+<li></li>
+</ul>
+<section id="plot-conus404-hourly-accumulated-precipitation">
+<h3>Plot CONUS404 hourly accumulated precipitation<a class="headerlink" href="#plot-conus404-hourly-accumulated-precipitation" title="Permalink to this headline">#</a></h3>
+</section>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Mapping Helper Routines</span>
+<span class="c1">#   In this example, we’re going to extract the cartopy mapping object from a diagnostic variable (XLAT or XLONG), the lat,lon coordinates, and the geographic boundaries. </span>
+<span class="c1">#   Get the cartopy mapping object</span>
+<span class="n">cart_proj</span>                   <span class="o">=</span> <span class="n">get_cartopy</span><span class="p">(</span><span class="n">XLAT</span><span class="p">)</span>
+
+<span class="c1"># Create a figure</span>
+<span class="n">fig1</span>                        <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="c1"># Set the GeoAxes to the projection used by WRF</span>
+<span class="n">ax1</span>                         <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="n">cart_proj</span><span class="p">)</span>
+<span class="c1"># Download and add the states and coastlines</span>
+<span class="n">states</span>                      <span class="o">=</span> <span class="n">cfeature</span><span class="o">.</span><span class="n">STATES</span><span class="o">.</span><span class="n">with_scale</span><span class="p">(</span><span class="s1">&#39;50m&#39;</span><span class="p">)</span>
+<span class="c1">#states                      = NaturalEarthFeature(category=&quot;cultural&quot;, scale=&quot;50m&quot;,</span>
+<span class="c1">#                                                  facecolor=&quot;none&quot;,</span>
+<span class="c1">#                                                  name=&quot;admin_1_states_provinces_shp&quot;)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">add_feature</span><span class="p">(</span><span class="n">states</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">coastlines</span><span class="p">(</span><span class="s1">&#39;50m&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">contourf</span><span class="p">(</span><span class="n">to_np</span><span class="p">(</span><span class="n">XLONG</span><span class="p">),</span> <span class="n">to_np</span><span class="p">(</span><span class="n">XLAT</span><span class="p">),</span> <span class="n">to_np</span><span class="p">(</span><span class="n">ACRAINLSM</span><span class="p">)</span><span class="o">/</span><span class="mf">25.4</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">crs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">(),</span> <span class="n">vmin0</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">get_cmap</span><span class="p">(</span><span class="s2">&quot;jet&quot;</span><span class="p">),</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+<span class="c1">#plt.contourf(to_np(XLONG), to_np(XLAT), to_np(geogrid1.ACRAINLSM).squeeze(), 100, transform=crs.PlateCarree(), vmin=0, vmax=40, cmap=get_cmap(&quot;jet&quot;), alpha=0.6)</span>
+
+<span class="c1"># Add a color bar</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax1</span><span class="p">,</span> <span class="n">shrink</span><span class="o">=</span><span class="mf">0.98</span><span class="p">,</span> <span class="n">orientation</span><span class="o">=</span><span class="s2">&quot;vertical&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">set_label</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;[in]&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="s1">&#39;normal&#39;</span><span class="p">)</span>
+<span class="c1"># Set the map bounds</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="o">-</span><span class="mi">1050000</span><span class="p">,</span> <span class="o">-</span><span class="mi">250000</span><span class="p">])</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span> <span class="o">-</span><span class="mi">250000</span><span class="p">,</span>  <span class="mi">300000</span><span class="p">])</span>
+<span class="c1">#ax1.set_xlim(cartopy_xlim(XLONG))</span>
+<span class="c1">#ax1.set_ylim(cartopy_ylim(XLAT))</span>
+<span class="c1"># Add the gridlines</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">gridlines</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;dotted&quot;</span><span class="p">)</span>
+<span class="c1"># Add title using input file name components</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;CONUS404 Accumulated Precip. [in], 2013 09-09 to 09-23&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="o">-</span><span class="mf">105.2281</span><span class="p">,</span>      <span class="mf">40.0373</span><span class="p">,</span>             <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">crs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">(),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="s1">&#39;normal&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="o">-</span><span class="mf">105.2281</span><span class="o">-</span><span class="mf">0.60</span><span class="p">,</span> <span class="mf">40.0373</span><span class="o">+</span><span class="mf">0.10</span><span class="p">,</span>     <span class="s1">&#39;Bldr&#39;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">crs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">(),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="o">-</span><span class="mf">108.5000</span><span class="p">,</span>      <span class="mf">40.4000</span><span class="p">,</span>      <span class="s1">&#39;Colorado&#39;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">crs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">(),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="s1">&#39;normal&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/1_create_extreme_precip_indicator_118_0.png" src="_images/1_create_extreme_precip_indicator_118_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="n">plot</span> <span class="o">=</span> <span class="n">ACRAINLSM</span><span class="o">.</span><span class="n">hvplot</span><span class="o">.</span><span class="n">quadmesh</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="s1">&#39;XLONG&#39;</span><span class="p">,</span>
+    <span class="n">y</span><span class="o">=</span><span class="s1">&#39;XLAT&#39;</span><span class="p">,</span>
+    <span class="n">z</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;TT&#39;</span><span class="p">,</span> <span class="s1">&#39;RH&#39;</span><span class="p">],</span>
+    <span class="n">groupby</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Time&#39;</span><span class="p">],</span>
+    <span class="n">widget_location</span><span class="o">=</span><span class="s1">&#39;bottom&#39;</span><span class="p">,</span>
+    <span class="n">rasterize</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">coastline</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;inferno&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">plot</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="ne">AttributeError</span>Traceback (most recent call last)
+<span class="nn">&lt;ipython-input-22-e251e0fd1420&gt;</span> in <span class="ni">&lt;module&gt;</span><span class="nt">()</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">plot</span> <span class="o">=</span> <span class="n">ACRAINLSM</span><span class="o">.</span><span class="n">hvplot</span><span class="o">.</span><span class="n">quadmesh</span><span class="p">(</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span>     <span class="n">x</span><span class="o">=</span><span class="s1">&#39;XLONG&#39;</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span>     <span class="n">y</span><span class="o">=</span><span class="s1">&#39;XLAT&#39;</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span>     <span class="n">z</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;TT&#39;</span><span class="p">,</span> <span class="s1">&#39;RH&#39;</span><span class="p">],</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span>     <span class="n">groupby</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Time&#39;</span><span class="p">],</span>
+
+<span class="nn">/glade/u/home/serke/.conda/envs/analysis2/lib/python2.7/site-packages/xarray/core/common.pyc</span> in <span class="ni">__getattr__</span><span class="nt">(self, name)</span>
+<span class="g g-Whitespace">    </span><span class="mi">177</span>                     <span class="k">return</span> <span class="n">source</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
+<span class="g g-Whitespace">    </span><span class="mi">178</span>         <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%r</span><span class="s2"> object has no attribute </span><span class="si">%r</span><span class="s2">&quot;</span> <span class="o">%</span>
+<span class="ne">--&gt; </span><span class="mi">179</span>                              <span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">name</span><span class="p">))</span>
+<span class="g g-Whitespace">    </span><span class="mi">180</span> 
+<span class="g g-Whitespace">    </span><span class="mi">181</span>     <span class="k">def</span> <span class="fm">__setattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+
+<span class="ne">AttributeError</span>: &#39;DataArray&#39; object has no attribute &#39;hvplot&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<section id="note-it-appears-that-the-conus404-does-a-very-reasonable-job-at-producing-very-significant-precipitation-amounts-similar-to-what-was-observed-during-the-flooding-period">
+<h3>NOTE: It appears that the CONUS404 does a very reasonable job at producing very significant precipitation amounts similar to what was observed during the flooding period.<a class="headerlink" href="#note-it-appears-that-the-conus404-does-a-very-reasonable-job-at-producing-very-significant-precipitation-amounts-similar-to-what-was-observed-during-the-flooding-period" title="Permalink to this headline">#</a></h3>
+</section>
+</section>
+<hr class="docutils" />
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h2>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "analysis2"
+        },
+        kernelOptions: {
+            kernelName: "analysis2",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'analysis2'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By NCAR ESDS Team<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
