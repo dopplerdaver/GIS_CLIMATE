@@ -1,5 +1,5 @@
-# analysis_project_template
-This is a sample template meant to be used for workflows centered around notebooks
+# GIS_CLIMATE repository for work with NCAR RAL's GIS Group
+Stores workflows centered around notebooks
 
 ## Why you should use this template
 This template is meant to give you the basic setup of an "analysis" repository, focused on storing notebooks or other pieces of scientific code/documentation. This repository is not meant to be a "one size fits all" repository, but rather, a starting point from which the user can build upon.
